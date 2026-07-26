@@ -1,0 +1,44 @@
+mat-toolbar{
+  background:#081120;
+  border-bottom: 2px solid #D4AF37;
+}
+
+.title{
+margin-left:15px;
+font-size:22px;
+font-weight:bold;
+color:white;
+ text-shadow:
+        0 0 5px rgba(100, 180, 255, 0.8),
+        0 0 10px rgba(100, 180, 255, 0.6),
+        0 0 20px rgba(100, 180, 255, 0.4);
+}
+
+#profileCircle{
+  color:white;
+  font-size: 28px;      /* Default is 24px */
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 50%;
+    box-shadow:
+        0 0 8px rgba(135, 206, 250, 0.8),
+        0 0 15px rgba(135, 206, 250, 0.5);
+    padding: 4px;
+}
+
+#menuButton{
+  color:#D4AF37;
+}
+
+.spacer{
+flex:1;
+}
+
+.container{
+    height:100vh;
+}
+
+.sidebar{
+    width:220px;
+}

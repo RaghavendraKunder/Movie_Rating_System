@@ -1,0 +1,50 @@
+mat-nav-list{
+    background:  radial-gradient(
+        circle at top left,
+            #3c77dd 2%,
+            #295eb8 7%,
+            #183b73 14%,
+            #10264a 17%,
+            #081120 27%,
+            #081120 100%
+    );
+    height:100%;
+    width:100%;
+    width:100%;
+    padding-top:20px;
+}
+
+a{
+    color:white;
+    margin:8px 10px;
+    width:180px;
+    border-radius:8px;
+}
+
+a:hover{
+    background:#1976d2;
+}
+
+mat-icon{
+    margin-right:15px;
+    color: #F4C542;
+    text-shadow:
+        0 0 4px rgba(244, 197, 66, 0.6),
+        0 0 8px rgba(244, 197, 66, 0.4),
+        0 0 14px rgba(244, 197, 66, 0.2);
+    transition: all 0.3s ease;
+}
+
+span{
+    font-size:14px;
+    font-weight:500;
+    color:white;
+    text-shadow:
+        0 0 5cap rgba(100, 180, 255, 0.8),
+        0 0 10px rgba(100, 180, 255, 0.6),
+        0 0 20px rgba(100, 180, 255, 0.4);
+}
+
+span:hover{
+    color:#081120;
+}

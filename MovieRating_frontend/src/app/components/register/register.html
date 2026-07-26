@@ -1,0 +1,59 @@
+<div class="register-container">
+    <mat-card>
+        <h2>REGISTER</h2>
+        <form [formGroup]="registerForm">
+            <mat-form-field appearance="outline">
+                <mat-label>Full Name</mat-label>
+                <input matInput formControlName="fullName">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Mobile</mat-label>
+                <input matInput formControlName="mobile">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input
+                    matInput
+                    [type]="hide ? 'password':'text'"
+                    formControlName="password">
+                <button
+                    mat-icon-button
+                    matSuffix
+                    type="button"
+                    (click)="hide=!hide">
+                    <mat-icon>
+                        {{hide ? 'visibility_off':'visibility'}}
+                    </mat-icon>
+                </button>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                    <mat-option value="ADMIN">
+                        ADMIN
+                    </mat-option>
+                    <mat-option value="USER">
+                        USER
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button
+                mat-raised-button
+                color="primary"
+                (click)="register()">
+                Register
+            </button>
+        </form>
+        <p>
+            Already have an account?
+            <a routerLink="/login">
+                Login
+            </a>
+        </p>
+    </mat-card>
+
+

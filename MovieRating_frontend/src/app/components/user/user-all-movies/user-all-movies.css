@@ -1,0 +1,109 @@
+.allMovies-container{
+
+    display: flex;
+    background:  radial-gradient(
+        circle at bottom right,
+            #3c77dd 0%,
+            #295eb8 5%,
+            #183b73 12%,
+            #10264a 15%,
+            #081120 25%,
+            #081120 100%
+        );
+    height:calc(100vh - 64px);
+}
+
+.sidebar{
+
+width:200px;
+
+background:#1e293b;
+
+}
+
+.main-content{
+
+flex:1;
+
+padding:25px;
+
+overflow:auto;
+
+}
+.title{
+
+font-size:30px;
+
+font-weight:bold;
+
+margin-bottom:5px;
+
+color:white;
+
+   text-shadow:
+        0 0 5px rgba(100, 180, 255, 0.8),
+        0 0 10px rgba(100, 180, 255, 0.6),
+        0 0 20px rgba(100, 180, 255, 0.4);
+
+}
+
+.desc{
+  font-size:15px;
+
+
+margin-bottom:25px;
+
+color:white;
+
+   text-shadow:
+        0 0 3px rgba(100, 180, 255, 0.8),
+        0 0 8px rgba(100, 180, 255, 0.6),
+        0 0 20px rgba(100, 180, 255, 0.4);
+  
+}
+
+.search-box {
+    border-width: 5px !important;   /* Increase to 3px if you want */
+}
+
+#searchBar{
+    font-weight:bold;
+    color:white;
+    text-shadow:
+        0 0 3px rgba(100, 180, 255, 0.8),
+        0 0 6px rgba(100, 180, 255, 0.6),
+        0 0 10px rgba(100, 180, 255, 0.4);
+}
+
+.search-box {
+    --mat-sys-primary: #F4C542;
+    width:710px;
+    margin-right:50px;
+}
+
+.search-box mat-icon{
+    color:#F4C542;
+}
+
+#filterBar{
+     font-weight:bold;
+    color:white;
+    text-shadow:
+        0 0 2px rgba(100, 180, 255, 0.8),
+        0 0 4px rgba(100, 180, 255, 0.6),
+        0 0 8px rgba(100, 180, 255, 0.4);
+}
+
+.filter-box{
+   --mat-sys-primary: #F4C542;
+    width:350px; 
+}
+
+mat-select{
+    width:100%;
+    color:white;
+    text-shadow:
+        0 0 1px rgba(100, 180, 255, 0.8),
+        0 0 2px rgba(100, 180, 255, 0.6),
+        0 0 6px rgba(100, 180, 255, 0.4);
+}

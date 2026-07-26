@@ -1,0 +1,190 @@
+.dashboard-container{   
+    display:flex;
+    background:  radial-gradient(
+            circle at bottom right,
+            #3c77dd 0%,
+            #295eb8 5%,
+            #183b73 12%,
+            #10264a 15%,
+            #081120 25%,
+            #081120 100%
+    );
+height:calc(100vh - 64px);
+}
+
+.sidebar{
+    width:200px;
+    background:#1e293b;
+}
+
+.main-content{
+    flex:1;
+    padding:25px;
+    overflow:auto;
+}
+
+.title{
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:25px;
+    color:white;
+   text-shadow:
+        0 0 5px rgba(100, 180, 255, 0.8),
+        0 0 10px rgba(100, 180, 255, 0.6),
+        0 0 20px rgba(100, 180, 255, 0.4);
+}
+
+.carousel{
+    width:100%;
+    height:420px;
+    border-radius:20px;
+    overflow:hidden;
+    margin-bottom:30px;
+}
+
+.carousel-item{
+    position:relative;
+    width:100%;
+    height:420px;
+}
+
+.carousel img{
+    height:350px;
+    object-fit:cover;
+    border-radius:15px;
+    height:380px;
+    margin-bottom:20px;
+}
+.carousel-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+    display:block;
+}
+
+.carousel-item::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to right,
+        rgba(8,17,32,.85),
+        rgba(8,17,32,.35),
+        rgba(8,17,32,.15)
+    );
+    z-index:1;
+}
+
+.carousel-caption{
+    position:absolute;
+    left:70px;
+    bottom:60px;
+    z-index:2;
+    text-align:left;
+    color:white;
+}
+
+.carousel-indicators button{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+    background-color:white;
+}
+
+.carousel-indicators .active{
+    width:20px;
+    border-radius:15px;
+    background-color:#1976d2;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    padding:25px;
+    text-align:center;
+    color:white;
+    border-radius:10px;
+}
+
+.card mat-icon{
+    font-size:35px;
+    height:35px;
+    width:35px;
+    margin-bottom:10px;
+}
+
+.display{
+    background:
+        radial-gradient(
+            circle at center,
+            #5ea8ff 0%,
+            #4284e8 4%,
+            #295eb8 12%,
+            #1e4a87 25%,
+            #173867 40%,
+            #12274a 55%,
+            #0d1d36 70%,
+            #0a1528 85%,
+            #081120 100%
+        );
+    border-radius:16px;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.35),
+        0 0 20px rgba(94,168,255,.12);
+}
+
+.recent-books{
+    margin-top:30px;
+    padding:20px;
+}
+
+.Top-Movies{
+    background: radial-gradient(
+        circle at left top, 
+        #081120 0%,
+        #0a1528 15%,
+        #0d1d36 30%,
+        #12274a 45%,
+        #173867 60%,
+        #1e4a87 75%,
+        #295eb8 88%,
+        #4284e8 96%,
+        #5ea8ff 100%
+    );
+    color:white;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.35),
+        0 0 20px rgba(94,168,255,.12);
+    margin-bottom:30px;    
+}
+
+.cards{
+ margin-bottom:30px;
+}
+
+#heading{
+    margin:5px;
+    margin-left:17px;
+    text-shadow:
+        0 0 3px rgba(100, 180, 255, 0.8),
+        0 0 10px rgba(100, 180, 255, 0.6),
+        0 0 20px rgba(100, 180, 255, 0.4);
+}
+
+hr{
+    border: none;
+    height: 1px;
+    background: #D4AF37;
+    margin: 15px 0;
+    text-shadow:
+        0 0 4px rgba(244, 197, 66, 0.6),
+        0 0 8px rgba(244, 197, 66, 0.4),
+        0 0 14px rgba(244, 197, 66, 0.2);
+}

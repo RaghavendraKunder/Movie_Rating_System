@@ -1,0 +1,26 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class Auth { private baseUrl = "http://localhost:9091/api/auth";
+
+  constructor(private http: HttpClient) { }
+
+  login(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "/login", data, {
+      withCredentials: true
+    });
+  }
+
+  register(data: any): Observable<any> {
+    return this.http.post(this.baseUrl + "/register", data);
+  }
+
+  logout(): Observable<any> {
+    return this.http.post(this.baseUrl + "/logout", {}, {
+      withCredentials: true
+    });
+  }}
