@@ -1,0 +1,50 @@
+<app-navbar></app-navbar>
+<div class="allMovies-container">
+    <!-- Side Navigation -->
+   <div class="sidebar">
+        <app-side-nav></app-side-nav>
+    </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2 class="title">
+            Requested Movies
+        </h2>
+        <h5 class="desc">Review user-submitted movie requests</h5>
+        <div class="cards">
+            <mat-card class="card display">
+                <mat-icon>local_movies</mat-icon>
+                <h2>120</h2>
+                <p>Total Movies</p>
+            </mat-card>
+            <mat-card class="card display">
+                <mat-icon>star_rate</mat-icon>
+                <h2>20</h2>
+                <p>Total Movies</p>
+            </mat-card>
+            <mat-card class="card display">
+                <mat-icon>rate_review</mat-icon>
+                <h2>15</h2>
+                <p>Movies You've Rated</p>
+            </mat-card>
+            <mat-card class="card display">
+                <mat-icon>add_circle_outline</mat-icon>
+                <h2>15</h2>
+                <p>Movies You've Added</p>
+            </mat-card>
+        </div>
+        <mat-form-field appearance="outline" class="search-box">
+        <mat-label id="searchBar">Search</mat-label>
+        <input matInput placeholder="e.g. The Dark Knight">
+        <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="filter-box">
+            <mat-label id="filterBar">Select</mat-label>
+            <mat-select multiple>
+                <mat-option value="one">First option</mat-option>
+                <mat-option value="two">Second option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        
+    </div>
+
+

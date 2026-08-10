@@ -1,4 +1,5 @@
 export interface Genre {
-  genreId: number;
-  genreName: string;
+  id: number;
+  name: string;
+  totalMovies: number;
 }

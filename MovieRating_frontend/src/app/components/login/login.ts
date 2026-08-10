@@ -28,28 +28,40 @@ export class Login {
 
 
   login() {
-    if (this.loginForm.invalid) {
-      return;
-    }
-    this.authService.login(this.loginForm.value)
-      .subscribe({
-        next: (response) => {
-          this.snackBar.open(
-            response.message,
-            'Close',
-            {
-              duration: 3000
-            });
-          this.router.navigate(['/dashboard']);
-        },
-        error: (error) => {
-          this.snackBar.open(
-            error.error.message,
-            'Close',
-            {
-              duration: 3000
-            });
-        }
-      });
+  if (this.loginForm.invalid) {
+    return;
   }
+
+  this.authService.login(this.loginForm.value).subscribe({
+  next: (response: any) => {
+
+  localStorage.setItem('token', response.token);
+  localStorage.setItem('role', response.role);
+  localStorage.setItem('userId', response.userId);
+  localStorage.setItem('email', response.email);
+  localStorage.setItem('fullName', response.fullName);
+
+  this.snackBar.open(
+    'Login Successful',
+    'Close',
+    {
+      duration: 3000
+    }
+  );
+
+  if(response.role === 'ADMIN'){
+    this.router.navigate(['/admin-dashboard']);
+  }else{
+    this.router.navigate(['/user-dashboard']);
+  }
+
+},
+
+    error: (error) => {
+      this.snackBar.open(error.error.message, 'Close', {
+        duration: 3000
+      });
+    }
+  });
+}
 }

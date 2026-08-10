@@ -1,6 +1,9 @@
 mat-toolbar{
   background:#081120;
-  border-bottom: 2px solid #D4AF37;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow:
+    0 0 6px rgba(212, 175, 55, 0.18),
+    0 0 14px rgba(212, 175, 55, 0.08);
 }
 
 .title{

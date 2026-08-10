@@ -1,14 +1,18 @@
-export interface Movies {
-  id: number;
+export interface Movie {
+  id?: number;
   title: string;
   description: string;
-  director: string;
-  cast: string;
-  releaseDate: Date;
+  releaseDate: string;
   duration: number;
   language: string;
-  genre: string;
+  genres: string[];
+  director: string;
+  cast: string;
   posterUrl: string;
-  trailerUrl: string;
-  averageRating: number;
+  trailerUrl?: string;
+  averageRating?: number;
+  totalRatings?: number;
+  totalReviews?: number;
+  createdAt?: string;
+  updatedAt?: string;
 }

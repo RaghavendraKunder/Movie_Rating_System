@@ -1,6 +1,29 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+import { Movie } from '../models/movies';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class Movie {}
+export class MovieService {
+
+  private baseUrl = 'http://localhost:9091/api/movies';
+
+  constructor(private http: HttpClient) {}
+
+  addMovie(movie: any): Observable<Movie> {
+    return this.http.post<Movie>(
+      this.baseUrl,
+      movie,
+      {
+        withCredentials: true
+      }
+    );
+  }
+
+  getMovies(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(this.baseUrl);
+  }
+}

@@ -32,7 +32,12 @@ import { UserAllMovies } from './components/user/user-all-movies/user-all-movies
 import { UserWatchlist } from './components/user/user-watchlist/user-watchlist';
 import { UserMyRatings } from './components/user/user-my-ratings/user-my-ratings';
 import { UserNavbar } from './components/user/user-navbar/user-navbar';
+import { MovieRequest } from './components/admin/movie-request/movie-request';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {provideHttpClient,withFetch,withInterceptors} from '@angular/common/http';
+
+import { jwtInterceptor } from './interceptors/jwt-interceptor';
+
 
 @NgModule({
   declarations: [
@@ -49,7 +54,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     UserAllMovies,
     UserWatchlist,
     UserMyRatings,
-    UserNavbar
+    UserNavbar,
+    MovieRequest,
   ],
   imports: [
     BrowserModule,
@@ -70,9 +76,16 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     RouterModule,
     MatDatepickerModule,
     MatNativeDateModule,
-     MatSidenavModule,
+    MatSidenavModule,
   ],
-  providers: [provideBrowserGlobalErrorListeners(), provideClientHydration(withEventReplay())],
+  providers: [
+  provideBrowserGlobalErrorListeners(),
+  provideClientHydration(withEventReplay()),
+  provideHttpClient(
+  withFetch(),
+  withInterceptors([jwtInterceptor])
+)
+  ],
   bootstrap: [App],
 })
 export class AppModule {}

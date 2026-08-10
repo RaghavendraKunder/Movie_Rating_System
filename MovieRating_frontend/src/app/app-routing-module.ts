@@ -10,6 +10,9 @@ import {AddMovies} from './components/admin/add-movies/add-movies';
 import { UserDashboard } from './components/user/user-dashboard/user-dashboard';
 import { UseSideNav } from './components/user/use-side-nav/use-side-nav';
 import { UserAllMovies } from './components/user/user-all-movies/user-all-movies';
+import { UserWatchlist } from './components/user/user-watchlist/user-watchlist';
+import { UserMyRatings } from './components/user/user-my-ratings/user-my-ratings';
+import {MovieRequest} from './components/admin/movie-request/movie-request';
 
 const routes: Routes = [ 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -23,7 +26,10 @@ const routes: Routes = [
   { path: 'add-movies', component: AddMovies},
   { path: 'user-dashboard', component: UserDashboard},
   { path: 'use-side-nav', component: UseSideNav},
-  { path: 'user-all-movies', component: UserAllMovies}];
+  { path: 'user-all-movies', component: UserAllMovies},
+  { path: 'user-watchlist', component: UserWatchlist},
+  { path: 'user-my-ratings', component: UserMyRatings},
+  { path: 'movie-request', component: MovieRequest}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

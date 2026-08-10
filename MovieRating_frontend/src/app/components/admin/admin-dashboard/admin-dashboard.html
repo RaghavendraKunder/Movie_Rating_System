@@ -97,56 +97,100 @@
             </mat-card>
         </div>
         <hr>    
-        <mat-card class="Top-Movies">
-            <h2 id="heading">Top Rated Movies</h2>
-        </mat-card>
-        <div class="cards topMovies">
-            <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-             <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-             <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-             <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-        </div>   
+        <section class="top-rated">
+            <header class="tr-head">
+                <span class="tr-bar"></span>
+                <h2>Top Rated Movies</h2>
+                <span class="tr-rule"></span>
+                <span class="tr-count">Top 4</span>
+            </header>
+            <div class="tr-grid">
+                <mat-card class="tr-card" *ngFor="let m of topRated; let i = index">
+                    <span class="tr-rank">{{ i + 1 }}</span>
+                    <div class="tr-poster">
+                        <img
+                            [src]="m.posterUrl"
+                            [alt]="m.title"
+                            class="m-posterUrl"
+                            loading="lazy"
+                        decoding="async">
+                    </div>
+                    <div class="tr-body">
+                        <h3 class="tr-title">{{ m.title }}</h3>
+                        <p class="tr-meta">{{ m.year }} · {{ m.genre }}</p>
+                        <div class="tr-score">
+                            <mat-icon>star</mat-icon>
+                            <span class="tr-value">{{ m.rating | number:'1.1-1' }}</span>
+                            <span class="tr-max">/10</span>
+                        </div>
+                        <div class="tr-track"><i [style.width.%]="m.rating * 10"></i></div>
+                        <p class="tr-votes">{{ m.votes }} ratings</p>
+                    </div>
+                </mat-card>
+            </div>
+        </section>
+
         <hr>    
-        <mat-card class="Top-Movies">
-            <h2 id="heading">Newly Added Movies</h2>
+       <section class="recently-added">
+    <header class="tr-head">
+        <span class="tr-bar"></span>
+        <h2>Recently Added Movies</h2>
+        <span class="tr-rule"></span>
+        <span class="tr-count">Top 4</span>
+    </header>
+
+    <div class="tr-grid">
+        <mat-card
+            class="tr-card"
+            *ngFor="let m of recentlyAdded; let i = index">
+
+            <span class="tr-rank">{{ i + 1 }}</span>
+
+            <div class="tr-poster">
+                <img
+                    [src]="m.posterUrl"
+                    [alt]="m.title"
+                    class="m-posterUrl"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+
+            <div class="tr-body">
+
+                <h3 class="tr-title">
+                    {{ m.title }}
+                </h3>
+
+                <p class="tr-meta">
+                    {{ m.year }} · {{ m.genre }}
+                </p>
+
+                <div class="tr-score">
+                    <mat-icon>star</mat-icon>
+
+                    <span class="tr-value">
+                        {{ m.rating | number:'1.1-1' }}
+                    </span>
+
+                    <span class="tr-max">
+                        /10
+                    </span>
+                </div>
+
+                <div class="tr-track">
+                    <i [style.width.%]="m.rating * 10"></i>
+                </div>
+
+                <p class="tr-votes">
+                    {{ m.votes }} ratings
+                </p>
+
+            </div>
+
         </mat-card>
-        <div class="cards topMovies">
-            <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-             <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-             <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-             <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-        </div>   
+    </div>
+</section>
+
+   
     </div>
 </div>

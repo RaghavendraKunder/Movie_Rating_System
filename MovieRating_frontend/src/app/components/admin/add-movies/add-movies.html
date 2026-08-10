@@ -11,7 +11,7 @@
                 <mat-card-title>Add New Movie</mat-card-title>
             </mat-card-header>
         <mat-card-content>
-            <form [formGroup]="movieForm">
+            <form [formGroup]="movieForm"  (ngSubmit)="addMovie()">
                 <!-- Movie Title -->
                 <mat-form-field appearance="outline" class="full-width">
                     <mat-label>Movie Title</mat-label>
@@ -62,18 +62,20 @@
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
-                        <mat-label>Genres</mat-label>
-                        <mat-select multiple formControlName="genres">
-                            <mat-option value="Action">Action</mat-option>
-                            <mat-option value="Adventure">Adventure</mat-option>
-                            <mat-option value="Comedy">Comedy</mat-option>
-                            <mat-option value="Drama">Drama</mat-option>
-                            <mat-option value="Fantasy">Fantasy</mat-option>
-                            <mat-option value="Horror">Horror</mat-option>
-                            <mat-option value="Sci-Fi">Sci-Fi</mat-option>
-                            <mat-option value="Thriller">Thriller</mat-option>
-                        </mat-select>
-                    </mat-form-field>
+    <mat-label>Genres</mat-label>
+
+    <mat-select
+        formControlName="genreIds"
+        multiple>
+
+        @for (genre of genres; track genre.id) {
+            <mat-option [value]="genre.id">
+                {{ genre.name }}
+            </mat-option>
+        }
+
+    </mat-select>
+</mat-form-field>
                 </div>
                 <!-- Director -->
                 <mat-form-field appearance="outline" class="full-width">
@@ -107,9 +109,10 @@
                 <!-- Buttons -->
                 <div class="button-row">
                     <button
-                        mat-raised-button  class="add-btn">
+                        mat-raised-button  class="add-btn"
+                        type="submit" [disabled]="isSubmitting">
                         <mat-icon>add_circle</mat-icon>
-                        Add Movie
+                        {{ isSubmitting ? 'Adding Movie...' : 'Add Movie' }}
                     </button>
                     <button
                         mat-stroked-button
