@@ -35,29 +35,31 @@
             </mat-form-field>
 
             <!-- Genre Filter -->
-            <mat-form-field appearance="outline" class="filter-box">
+           <!-- Genre Filter -->
+<mat-form-field appearance="outline" class="filter-box">
 
-                <mat-label id="filterBar">
-                    Genre
-                </mat-label>
+    <mat-label id="filterBar">
+        Genre
+    </mat-label>
 
-                <mat-select
-                    [(ngModel)]="selectedGenres"
-                    (selectionChange)="filterMovies()">
+    <mat-select
+        [(ngModel)]="selectedGenres"
+        (selectionChange)="filterMovies()">
 
-                    <mat-option value="">
-                        All Genres
-                    </mat-option>
+        <mat-option value="">
+            All Genres
+        </mat-option>
 
-                    <mat-option
-                        *ngFor="let genre of genres"
-                        [value]="genre">
-                        {{ genre }}
-                    </mat-option>
+        <mat-option
+            *ngFor="let genre of genres"
+            [value]="genre">
+            {{ genre }}
+        </mat-option>
 
-                </mat-select>
+    </mat-select>
 
-            </mat-form-field>
+</mat-form-field>
+
 
         </div>
 
@@ -67,7 +69,8 @@
 
             <mat-card
                 class="movie-card"
-                *ngFor="let movie of filteredMovies; let i = index">
+                *ngFor="let movie of filteredMovies; let i = index"
+                  (click)="openMovie(movie.id!)">
 
                 <!-- Rank -->
                 <span class="movie-rank">

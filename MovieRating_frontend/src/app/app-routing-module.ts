@@ -13,6 +13,8 @@ import { UserAllMovies } from './components/user/user-all-movies/user-all-movies
 import { UserWatchlist } from './components/user/user-watchlist/user-watchlist';
 import { UserMyRatings } from './components/user/user-my-ratings/user-my-ratings';
 import {MovieRequest} from './components/admin/movie-request/movie-request';
+import { MovieDetails } from './components/admin/movie-details/movie-details';
+
 
 const routes: Routes = [ 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -29,7 +31,9 @@ const routes: Routes = [
   { path: 'user-all-movies', component: UserAllMovies},
   { path: 'user-watchlist', component: UserWatchlist},
   { path: 'user-my-ratings', component: UserMyRatings},
-  { path: 'movie-request', component: MovieRequest}];
+  { path: 'movie-request', component: MovieRequest},
+  { path: 'movie-details/:id', component: MovieDetails}
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

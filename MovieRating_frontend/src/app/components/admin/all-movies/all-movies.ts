@@ -120,18 +120,9 @@ export class AllMovies implements OnInit {
     this.filterMovies();
   }
 
-  openMovie(movieId: number): void {
+ openMovie(movieId: number): void {
+  console.log('Opening movie ID:', movieId);
 
-    console.log(
-      'Opening movie ID:',
-      movieId
-    );
-
-    this.router.navigate([
-      '/movie-details',
-      movieId
-    ]);
-
-  }
-
+  this.router.navigate(['/movie-details', movieId]);
+}
 }

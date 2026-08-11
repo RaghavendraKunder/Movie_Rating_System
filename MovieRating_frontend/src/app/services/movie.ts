@@ -29,5 +29,13 @@ export class MovieService {
     'http://localhost:9091/api/movies'
   );
 
+  
+}
+getMovieById(id: number): Observable<Movie> {
+
+    return this.http.get<Movie>(
+        `${this.baseUrl}/${id}`
+    );
+
 }
 }

@@ -34,10 +34,11 @@ import { UserMyRatings } from './components/user/user-my-ratings/user-my-ratings
 import { UserNavbar } from './components/user/user-navbar/user-navbar';
 import { MovieRequest } from './components/admin/movie-request/movie-request';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {provideHttpClient,withFetch,withInterceptors} from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 
 import { jwtInterceptor } from './interceptors/jwt-interceptor';
-
+import { MovieDetails } from './components/admin/movie-details/movie-details';
+import {UserMovieDetails} from './components/user/user-movie-details/user-movie-details';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,8 @@ import { jwtInterceptor } from './interceptors/jwt-interceptor';
     UserMyRatings,
     UserNavbar,
     MovieRequest,
+    MovieDetails,
+    UserMovieDetails
   ],
   imports: [
     BrowserModule,
@@ -79,12 +82,9 @@ import { jwtInterceptor } from './interceptors/jwt-interceptor';
     MatSidenavModule,
   ],
   providers: [
-  provideBrowserGlobalErrorListeners(),
-  provideClientHydration(withEventReplay()),
-  provideHttpClient(
-  withFetch(),
-  withInterceptors([jwtInterceptor])
-)
+    provideBrowserGlobalErrorListeners(),
+    provideClientHydration(withEventReplay()),
+    provideHttpClient(withFetch(), withInterceptors([jwtInterceptor])),
   ],
   bootstrap: [App],
 })
