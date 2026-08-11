@@ -23,7 +23,11 @@ export class MovieService {
     );
   }
 
-  getMovies(): Observable<Movie[]> {
-    return this.http.get<Movie[]>(this.baseUrl);
-  }
+  getAllMovies(): Observable<Movie[]> {
+
+  return this.http.get<Movie[]>(
+    'http://localhost:9091/api/movies'
+  );
+
+}
 }
