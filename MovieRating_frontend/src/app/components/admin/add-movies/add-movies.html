@@ -62,20 +62,16 @@
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field appearance="outline">
-    <mat-label>Genres</mat-label>
-
-    <mat-select
-        formControlName="genreIds"
-        multiple>
-
-        @for (genre of genres; track genre.id) {
-            <mat-option [value]="genre.id">
-                {{ genre.name }}
-            </mat-option>
-        }
-
-    </mat-select>
-</mat-form-field>
+                        <mat-label>Genres</mat-label>
+                        <mat-select
+                            formControlName="genreIds" multiple>
+                            @for (genre of genres; track genre.id) {
+                                <mat-option [value]="genre.id">
+                                    {{ genre.name }}
+                                </mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
                 </div>
                 <!-- Director -->
                 <mat-form-field appearance="outline" class="full-width">

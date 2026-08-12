@@ -16,6 +16,7 @@ import {MovieRequest} from './components/admin/movie-request/movie-request';
 import { MovieDetails } from './components/admin/movie-details/movie-details';
 
 
+
 const routes: Routes = [ 
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 

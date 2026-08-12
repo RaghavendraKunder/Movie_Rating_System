@@ -1,209 +1,206 @@
+<app-navbar></app-navbar>
 <div class="movie-page">
-
-    <!-- Back -->
-    <button
-        class="back-btn"
-        (click)="goBack()">
-
-        ← Back to all movies
-
-    </button>
-
-
-    <!-- Movie Information -->
-    <section
-        class="movie-details"
-        *ngIf="movie">
-
-        <!-- Poster -->
-        <div class="poster-section">
-
-            <img
-                [src]="movie.posterUrl"
-                [alt]="movie.title"
-                class="movie-poster">
-
-        </div>
-
-
-        <!-- Information -->
-        <div class="movie-info">
-
-            <h1>
-
-                {{ movie.title }}
-
-                <span class="year">
-
-                    ({{ movie.releaseDate | date:'yyyy' }})
-
-                </span>
-
-            </h1>
-
-
-            <p class="genres">
-
-                {{ movie.genres.join(', ') }}
-
-                · {{ movie.language }}
-
-                · {{ movie.duration }} min
-
-            </p>
-
-
-            <div class="rating-summary">
-
-                <mat-icon>star</mat-icon>
-
-                <strong>
-
-                    {{ movie.averageRating || 0 | number:'1.1-1' }}
-
-                </strong>
-
-                / 10
-
-                <span>
-
-                    ({{ movie.totalRatings || 0 }} ratings)
-
-                </span>
-
-            </div>
-
-
-            <p class="description">
-
-                {{ movie.description }}
-
-            </p>
-
-
-            <p class="director">
-
-                <strong>Directed by:</strong>
-
-                {{ movie.director }}
-
-            </p>
-
-
-            <p class="cast">
-
-                <strong>Cast:</strong>
-
-                {{ movie.cast }}
-
-            </p>
-
-
-            <button
-                mat-raised-button
-                class="trailer-btn"
-                *ngIf="movie.trailerUrl"
-                (click)="openTrailer()">
-
-                <mat-icon>play_circle</mat-icon>
-
-                Watch Official Trailer
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- Rating -->
-    <section class="rating-section">
-
-        <h3>
-            Rate This Movie
-        </h3>
-
-
-        <div class="rating-box">
-
-            <div class="stars">
-
-                <button
-                    *ngFor="let star of [1,2,3,4,5]"
-                    type="button"
-                    (click)="selectRating(star)">
-
-                    <mat-icon>
-
-                        {{
-                            star <= selectedRating
-                            ? 'star'
-                            : 'star_border'
-                        }}
-
-                    </mat-icon>
-
-                </button>
-
-            </div>
-
-
-            <textarea
-                [(ngModel)]="reviewText"
-                placeholder="Write a review (optional)">
-            </textarea>
-
-
-            <button
-                mat-raised-button
-                class="submit-btn"
-                (click)="submitRating()">
-
-                Submit Rating
-
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- Reviews -->
-    <section class="reviews-section">
-
-        <h3>
-
-            Reviews ({{ reviews.length }})
-
-        </h3>
-
-
-        <div
-            class="review-card"
-            *ngFor="let review of reviews">
-
-            <div class="review-header">
-
-                <strong>
-                    {{ review.userName }}
-                </strong>
-
-                <span class="review-rating">
-
-                    ★ {{ review.rating }}
-
-                </span>
-
-            </div>
-
-
+    <aside class="sidebar">
+        <app-side-nav></app-side-nav>
+    </aside>
+    <main class="main-content">
+        <button
+            class="back-btn"
+            type="button"
+            (click)="goBack()">
+            ← BACK TO ALL MOVIES
+        </button>
+        <div class="loading-container" *ngIf="isLoading">
+            <mat-spinner></mat-spinner>
             <p>
-                {{ review.review }}
+                Loading movie details...
             </p>
-
         </div>
+        <div
+            class="error-container"
+            *ngIf="!isLoading && errorMessage">
+            <p>
+                {{ errorMessage }}
+            </p>
+        </div>
+        <ng-container
+            *ngIf="!isLoading && movie && !errorMessage">
+            <section class="movie-hero">
+                <div class="poster-section">
+                    <img
+                        [src]="movie.posterUrl"
+                        [alt]="movie.title"
+                        class="movie-poster">
+                </div>
+                <div class="movie-info">
+                    <div class="title-row">
+                        <h1>
+                            {{ movie.title }}
+                        </h1>
+                        <span class="year">
+                            {{ movie.releaseDate | date:'yyyy' }}
+                        </span>
+                    </div>
+                    <p class="subtitle">
+                        {{ movie.genres?.join(' · ') }}
+                    </p>
+                    <div class="movie-tags">
+                        <span
+                            class="tag"
+                            *ngFor="let genre of movie.genres || []">
+                            {{ genre }}
+                        </span>
+                        <span class="tag">
+                            {{ movie.language }}
+                        </span>
+                        <span class="tag">
+                            {{ movie.duration }} min
+                        </span>
+                    </div>
+                    <div class="overall-rating">
+                        <div class="gold-stars">
+                            <mat-icon>
+                                star
+                            </mat-icon>
+                            <mat-icon>
+                                star
+                            </mat-icon>
+                            <mat-icon>
+                                star
+                            </mat-icon>
+                            <mat-icon>
+                                star
+                            </mat-icon>
+                            <mat-icon>
+                                star_half
+                            </mat-icon>
+                        </div>
+                        <strong>
+                            {{ movie.averageRating || 0 | number:'1.1-1' }}
+                        </strong>
+                        <span>
+                            ({{ movie.totalRatings || 0 }} ratings)
+                        </span>
+                    </div>
+                    <p class="description">
+                        {{ movie.description }}
+                    </p>
+                    <div class="movie-credits">
+                        <div class="credit">
+                            <span class="credit-label">
+                                DIRECTED BY
+                            </span>
+                            <strong>
+                                {{ movie.director }}
+                            </strong>
+                        </div>
+                        <div class="credit">
+                            <span class="credit-label">
+                                STARRING
+                            </span>
+                            <strong>
+                                {{ movie.cast }}
+                            </strong>
+                        </div>
+                    </div>
+                    <button
+                        *ngIf="movie.trailerUrl"
+                        type="button"
+                        class="trailer-btn"
+                        (click)="openTrailer()">
+                        <mat-icon>
+                            play_arrow
+                        </mat-icon>
+                        Watch Official Trailer
+                    </button>
+                </div>
+            </section>
 
+            <div class="section-divider"></div>
 
-    </section>
-
+            <div class="bottom-section">
+                <section class="rating-section">
+                    <h2>
+                        <span>•</span>
+                        RATE THIS MOVIE
+                    </h2>
+                    <div class="rating-card">
+                        <div class="rating-stars">
+                            <button
+                                *ngFor="let star of [1,2,3,4,5]"
+                                type="button"
+                                (click)="selectRating(star)">
+                                <mat-icon>
+                                    {{
+                                        star <= selectedRating
+                                            ? 'star'
+                                            : 'star_border'
+                                    }}
+                                </mat-icon>
+                            </button>
+                        </div>
+                        <textarea
+                            [(ngModel)]="reviewText"
+                            placeholder="Write your thoughts..."
+                            class="review-input"></textarea>
+                        <button
+                            type="button"
+                            class="submit-btn"
+                            (click)="submitRating()">
+                            Submit Review
+                        </button>
+                    </div>
+                </section>
+   
+                <section class="reviews-section">
+                    <div class="reviews-heading">
+                        <h2>
+                            COMMUNITY REVIEWS
+                        </h2>
+                        <span class="average-review">
+                            {{ movie.averageRating || 0 | number:'1.1-1' }}
+                            Avg
+                        </span>
+                    </div>
+                    <div
+                        class="review-card"
+                        *ngFor="let review of reviews">
+                        <div class="review-user">
+                            <div class="user-avatar">
+                                {{
+                                    review.userName
+                                        ? review.userName.charAt(0).toUpperCase()
+                                        : 'U'
+                                }}
+                            </div>
+                            <div>
+                                <strong>
+                                    {{ review.userName }}
+                                </strong>
+                                <small>
+                                    Recently
+                                </small>
+                            </div>
+                        </div>
+                        <div class="review-stars">
+                            <span
+                                *ngFor="let star of [1,2,3,4,5]"
+                                [class.filled]="star <= review.rating">
+                                ★
+                            </span>
+                        </div>
+                        <p *ngIf="review.review">
+                            {{ review.review }}
+                        </p>
+                    </div>
+                    <div
+                        *ngIf="reviews.length === 0"
+                        class="no-reviews">
+                        No reviews yet.
+                        Be the first to review this movie!
+                    </div>
+                </section>
+            </div>
+        </ng-container>
+    </main>
 </div>

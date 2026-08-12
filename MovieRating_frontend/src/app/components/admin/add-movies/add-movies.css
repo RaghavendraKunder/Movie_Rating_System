@@ -117,7 +117,7 @@
 }
 
 .reset-btn{ 
-     color: #D4AF37!important;   /* Dark text */
+     color: #D4AF37!important;  
     font-weight: 600;
 } 
 
@@ -152,21 +152,14 @@ mat-icon{
         0 0 10px rgba(100, 180, 255, 0.25);
 }       
 
-/* Genre dropdown */
 mat-select {
     color: white !important;
 }
 
-/* Selected value inside mat-select */
 .mat-mdc-select-value {
     color: white !important;
 }
 
-
-/* Option when hovered */
-
-
-/* Selected option */
 .mat-mdc-option.mdc-list-item--selected {
     background-color: rgba(212, 175, 55, 0.15) !important;
 }
