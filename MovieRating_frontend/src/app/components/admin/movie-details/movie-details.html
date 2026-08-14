@@ -129,6 +129,7 @@
                             <button
                                 *ngFor="let star of [1,2,3,4,5]"
                                 type="button"
+                                [class.selected]="star <= selectedRating"
                                 (click)="selectRating(star)">
                                 <mat-icon>
                                     {{
@@ -141,12 +142,26 @@
                         </div>
                         <textarea
                             [(ngModel)]="reviewText"
-                            placeholder="Write your thoughts..."
-                            class="review-input"></textarea>
+                            maxlength="3000"
+                            placeholder="Write your review..."></textarea>
+                        <div
+                            class="review-validation"
+                            *ngIf="reviewText.trim().length > 0 && reviewText.trim().length < 20">
+                                Review must be at least 20 characters.
+                                {{ 20 - reviewText.trim().length }} more characters required.
+                        </div>    
+
+                        <div class="review-counter">
+                            {{ reviewText.length }} / 3000
+                        </div>
                         <button
                             type="button"
-                            class="submit-btn"
-                            (click)="submitRating()">
+                            (click)="submitRating()"
+                            [disabled]="
+                                selectedRating === 0 ||
+                                reviewText.trim().length < 20 ||
+                                reviewText.trim().length > 3000"
+                                class="submit-btn">
                             Submit Review
                         </button>
                     </div>
@@ -185,8 +200,8 @@
                         <div class="review-stars">
                             <span
                                 *ngFor="let star of [1,2,3,4,5]"
-                                [class.filled]="star <= review.rating">
-                                ★
+                                [class.filled]="star <= review.userRating">
+                                    ★
                             </span>
                         </div>
                         <p *ngIf="review.review">

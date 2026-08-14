@@ -40,6 +40,10 @@ height:calc(100vh - 64px);
     border-radius:20px;
     overflow:hidden;
     margin-bottom:30px;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow:
+        0 0 6px rgba(212, 175, 55, 0.18),
+        0 0 14px rgba(212, 175, 55, 0.08);
 }
 
 .carousel-item{
@@ -98,71 +102,107 @@ height:calc(100vh - 64px);
     background-color:#1976d2;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
-}
-
-.card{
-    padding:25px;
-    text-align:center;
-    color:white;
-    border-radius:10px;
-}
-
-.card mat-icon{
-    font-size:35px;
-    height:35px;
-    width:35px;
-    margin-bottom:10px;
-}
-
-.display{
-    background:
-        radial-gradient(
-            circle at center,
-            #5ea8ff 0%,
-            #4284e8 4%,
-            #295eb8 12%,
-            #1e4a87 25%,
-            #173867 40%,
-            #12274a 55%,
-            #0d1d36 70%,
-            #0a1528 85%,
-            #081120 100%
-        );
-    border-radius:16px;
-    border:1px solid rgba(255,255,255,.08);
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    min-height: 99px;
+    margin-top: 50px ;
+    margin-bottom:50px;
+    background: #0d1a33;
+    border: 1px solid #263b5e;
+    border-radius: 16px;
+    overflow: hidden;
+    padding: 0;
     box-shadow:
-        0 8px 25px rgba(0,0,0,.35),
-        0 0 20px rgba(94,168,255,.12);
+        0 6px 18px rgba(0, 0, 0, 0.22);
 }
 
-.recent-books{
-    margin-top:30px;
-    padding:20px;
+.card.display {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 84px;
+    padding: 14px 20px;
+    border-radius: 0;
+    background: transparent !important;
+    border: none;
+    box-shadow: none;
+    color: white;
+    text-align: left;
+    position: relative;
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+    position: relative;
 }
 
-.Top-Movies{
-    background: radial-gradient(
-        circle at left top, 
-        #081120 0%,
-        #0a1528 15%,
-        #0d1d36 30%,
-        #12274a 45%,
-        #173867 60%,
-        #1e4a87 75%,
-        #295eb8 88%,
-        #4284e8 96%,
-        #5ea8ff 100%
-    );
-    color:white;
-    border:1px solid rgba(255,255,255,.08);
+.card.display {
+    border-right: 1px solid #263b5e;
+}
+
+.card.display:nth-child(4n) {
+    border-right: none;
+}
+
+.card.display:hover {
+    background: #11213d !important;
     box-shadow:
-        0 8px 25px rgba(0,0,0,.35),
-        0 0 20px rgba(94,168,255,.12);
-    margin-bottom:30px;    
+        inset 0 0 20px rgba(59, 130, 246, 0.04);
+}
+
+.card.display mat-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    margin: 0 14px 0 0;
+    border-radius: 11px;
+    background: #172945;
+    color: #f4c542;
+    font-size: 20px;
+    line-height: 40px;
+    text-align: center;
+    box-sizing: border-box;
+    text-shadow:
+        0 0 5px rgba(244, 197, 66, 0.15);
+}
+
+.card.display h2 {
+    margin: 0;
+    font-size: 25px;
+    line-height: 1;
+    font-weight: 600;
+    color: #ffffff;
+}
+
+.card.display p {
+    margin: 4px 0 0;
+    font-size: 13px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #a9b8ce;
+}
+
+.card.display h2,
+.card.display p {
+    /* Since your HTML has h2 and p directly
+       after the icon, use this wrapper-like
+       positioning */
+       padding:0px;
+}
+
+
+.top-rated{
+    margin-top:40px;
+}
+
+.recently-added{
+    margin-top:40px;
 }
 
 .cards{
@@ -181,12 +221,11 @@ height:calc(100vh - 64px);
 hr{
     border: none;
     height: 1px;
-    background: #D4AF37;
     margin: 15px 0;
-    text-shadow:
-        0 0 4px rgba(244, 197, 66, 0.6),
-        0 0 8px rgba(244, 197, 66, 0.4),
-        0 0 14px rgba(244, 197, 66, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow:
+        0 0 6px rgba(212, 175, 55, 0.18),
+        0 0 14px rgba(212, 175, 55, 0.08);
 }
 
 

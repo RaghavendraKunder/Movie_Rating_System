@@ -61,21 +61,21 @@
 
 .movie-hero {
     display: grid;
-    grid-template-columns: 220px minmax(0, 700px);
-    gap: 28px;
+    grid-template-columns: 270px minmax(0, 900px);
+    gap: 38px;
     align-items: start;
-    max-width: 1050px;
+    max-width: 1250px;
 }
 
 .poster-section {
-    width: 220px;
+    width: 270px;
 }
 
 .movie-poster {
-    width: 220px;
-    height: 330px;
+    width: 270px;
+    height: 405px;
     object-fit: cover;
-    border-radius: 7px;
+    border-radius: 8px;
     display: block;
     border: 1px solid rgba(244, 197, 66, 0.20);
     box-shadow:
@@ -97,7 +97,7 @@
 .title-row h1 {
     margin: 0;
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 31px;
+    font-size: 38px;
     font-weight: 500;
     letter-spacing: 0.5px;
     color: #f5f7fb;
@@ -106,15 +106,15 @@
 
 .year {
     color: #c99f32;
-    font-size: 17px;
+    font-size: 19px;
     font-family: Georgia, "Times New Roman", serif;
 }
 
 .subtitle {
-    margin: 8px 0 12px;
+    margin: 10px 0 15px;
     color: #c7a24a;
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 13px;
+    font-size: 15px;
     letter-spacing: 0.4px;
 }
 
@@ -130,17 +130,17 @@
     background: rgba(244, 197, 66, 0.08);
     color: #e8c45d;
     border-radius: 4px;
-    padding: 3px 9px;
-    font-size: 10px;
+    padding: 5px 11px;
+    font-size: 11px;
     font-weight: 600;
 }
 
 .overall-rating {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin-bottom: 18px;
-    font-size: 12px;
+    gap: 9px;
+    margin-bottom: 21px;
+    font-size: 13px;
     color: #8995aa;
 }
 
@@ -155,24 +155,24 @@
 }
 
 .gold-stars mat-icon {
-    font-size: 16px;
-    width: 16px;
-    height: 16px;
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
 }
 
 .description {
-    max-width: 690px;
+    max-width: 850px;
     color: #b4bfd1;
-    font-size: 12px;
-    line-height: 1.65;
-    margin: 0 0 20px;
+    font-size: 14px;
+    line-height: 1.75;
+    margin: 0 0 24px;
 }
 
 .movie-credits {
     display: grid;
-    grid-template-columns: 150px minmax(250px, 1fr);
-    gap: 25px;
-    margin-bottom: 21px;
+    grid-template-columns: 160px minmax(350px, 1fr);
+    gap: 35px;
+    margin-bottom: 24px;
 }
 
 .credit {
@@ -183,17 +183,19 @@
 
 .credit-label {
     color: #68758b;
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 700;
     letter-spacing: 1px;
 }
 
 .credit strong {
     color: #dce2ec;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 500;
-    line-height: 1.4;
+    line-height: 1.5;
 }
+
+
 
 .trailer-btn {
     display: inline-flex;
@@ -263,36 +265,101 @@
 
 .rating-card {
     width: 100%;
+    height: 300px;
+
 }
+
+/* ================= RATING STARS ================= */
 
 .rating-stars {
     display: flex;
     justify-content: space-between;
+    align-items: center;
+
     margin-bottom: 16px;
 }
+
+
+/* ================= STAR BUTTON ================= */
 
 .rating-stars button {
     background: transparent;
     border: none;
     cursor: pointer;
+
     padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     color: #657287;
-    transition: 0.2s ease;
+
+    transition: 
+        transform 0.2s ease,
+        color 0.2s ease,
+        filter 0.2s ease;
 }
 
-.rating-stars button:hover {
-    color: #f4c542;
-    transform: scale(1.08);
-}
+
+/* ================= STAR ICON ================= */
 
 .rating-stars mat-icon {
     font-size: 22px;
     width: 22px;
     height: 22px;
+
+    transition:
+        color 0.2s ease,
+        filter 0.2s ease,
+        text-shadow 0.2s ease;
 }
 
-.rating-stars button:has(mat-icon:not([class])) {
-    color: #657287;
+
+/* ================= SELECTED STAR ================= */
+
+.rating-stars button.selected {
+    color: #f4c542;
+}
+
+
+.rating-stars button.selected mat-icon {
+
+     color: #f4c542;
+
+    filter:
+        drop-shadow(0 0 1px #fff2a8)
+        drop-shadow(0 0 3px rgba(244, 197, 66, 0.55));
+
+    text-shadow:
+        0 0 2px #fff2a8,
+        0 0 5px rgba(244, 197, 66, 0.45);
+}
+
+.rating-stars button.selected:hover {
+    transform: scale(1.12);
+}
+
+.rating-stars button.selected:hover mat-icon {
+    color: #ffd95a;
+    filter:
+        drop-shadow(0 0 3px #fff5bd)
+        drop-shadow(0 0 7px #f4c542)
+        drop-shadow(0 0 14px rgba(244, 197, 66, 0.85));
+    text-shadow:
+        0 0 5px #fff5bd,
+        0 0 10px #f4c542,
+        0 0 18px rgba(244, 197, 66, 0.8);
+}
+
+.rating-stars button:not(.selected):hover {
+    color: #cda83b;
+    transform: scale(1.08);
+}
+
+.rating-stars button:not(.selected):hover mat-icon {
+    filter:
+        drop-shadow(0 0 4px rgba(244, 197, 66, 0.5));
 }
 
 .review-input {
@@ -305,10 +372,26 @@
     color: #ffffff;
     padding: 12px;
     font-family: inherit;
-    font-size: 11px;
+    font-size: 14px;
     outline: none;
     margin-bottom: 13px;
     transition: 0.2s ease;
+}
+
+.rating-card textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    box-sizing: border-box;
+    margin-top: 15px;
+
+    background: #080f1d;
+    color: #fff;
+    border: 1px solid #2b3a52;
+    border-radius: 8px;
+
+    resize: vertical;
+    font-size: 14px;
 }
 
 .review-input::placeholder {
@@ -318,6 +401,24 @@
 .review-input:focus {
     border-color: #d7aa35;
     box-shadow: 0 0 0 1px rgba(215, 170, 53, 0.12);
+}
+
+.review-counter {
+    text-align: right;
+    font-size: 11px;
+    color: #657287;
+    margin-top: 5px;
+}
+
+.review-validation {
+    color: #f4c542;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 .submit-btn {
@@ -396,13 +497,13 @@
 .review-user strong {
     display: block;
     color: #dfe4ec;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .review-user small {
     display: block;
     color: #667287;
-    font-size: 8px;
+    font-size: 10px;
     margin-top: 2px;
 }
 
@@ -411,16 +512,21 @@
     right: 15px;
     top: 16px;
     color: #4b5568;
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .review-stars .filled {
     color: #f4c542;
+    text-shadow: 0 0 1px rgba(244, 197, 66, 0.25);
+}
+.review-stars span {
+    color: #657287;
+    text-shadow: none;
 }
 
 .review-card p {
     color: #9ba7b9;
-    font-size: 10px;
+    font-size: 15px;
     line-height: 1.5;
     margin: 11px 0 0;
     max-width: 90%;

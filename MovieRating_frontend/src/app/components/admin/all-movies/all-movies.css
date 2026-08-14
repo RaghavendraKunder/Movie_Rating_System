@@ -1,16 +1,18 @@
 .allMovies-container {
     display: flex;
 
-    background: radial-gradient(
-        circle at bottom right,
-        #3c77dd 0%,
-        #295eb8 5%,
-        #183b73 12%,
-        #10264a 15%,
-        #081120 25%,
-        #081120 100%
-    );
-
+   background:
+        radial-gradient(
+            circle at 70% 20%,
+            rgba(35, 72, 130, 0.20),
+            transparent 35%
+        ),
+        linear-gradient(
+            135deg,
+            #07101f 0%,
+            #0b1629 55%,
+            #101d33 100%
+        );
     min-height: calc(100vh - 64px);
 }
 
