@@ -1,165 +1,101 @@
 <app-navbar></app-navbar>
-
 <div class="allMovies-container">
-
     <!-- Side Navigation -->
     <div class="sidebar">
         <app-side-nav></app-side-nav>
     </div>
-
     <!-- Main Content -->
     <div class="main-content">
-
         <h2 class="title">
             All Movies
         </h2>
-
         <h5 class="desc">
             Browse, search and rate your favourite movies.
         </h5>
-
         <!-- Search + Filter -->
         <div class="search-filter-row">
-
             <!-- Search -->
             <mat-form-field appearance="outline" class="search-box">
                 <mat-label id="searchBar">Search</mat-label>
-
                 <input
                     matInput
                     placeholder="e.g. The Dark Knight"
                     [(ngModel)]="searchTerm"
                     (input)="filterMovies()">
-
                 <mat-icon matSuffix>search</mat-icon>
             </mat-form-field>
-
             <!-- Genre Filter -->
-           <!-- Genre Filter -->
-<mat-form-field appearance="outline" class="filter-box">
-
-    <mat-label id="filterBar">
-        Genre
-    </mat-label>
-
-    <mat-select
-        [(ngModel)]="selectedGenres"
-        (selectionChange)="filterMovies()">
-
-        <mat-option value="">
-            All Genres
-        </mat-option>
-
-        <mat-option
-            *ngFor="let genre of genres"
-            [value]="genre">
-            {{ genre }}
-        </mat-option>
-
-    </mat-select>
-
-</mat-form-field>
-
-
+            <mat-form-field appearance="outline" class="filter-box">
+                <mat-label id="filterBar">
+                    Genre
+                </mat-label>
+                <mat-select
+                    [(ngModel)]="selectedGenres" (selectionChange)="filterMovies()">
+                    <mat-option value="">
+                        All Genres
+                    </mat-option>
+                    <mat-option
+                        *ngFor="let genre of genres" [value]="genre">
+                        {{ genre }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
-
-
         <!-- Movies -->
         <div class="movies-grid">
-
-            <mat-card
-                class="movie-card"
+            <mat-card class="movie-card"
                 *ngFor="let movie of filteredMovies; let i = index"
-                  (click)="openMovie(movie.id!)">
-
-                <!-- Rank -->
+                (click)="openMovie(movie.id!)">
                 <span class="movie-rank">
                     {{ i + 1 }}
                 </span>
-
-                <!-- Poster -->
                 <div class="movie-poster">
-
                     <img
                         [src]="movie.posterUrl"
                         [alt]="movie.title"
                         loading="lazy"
                         decoding="async">
-
                 </div>
-
-
-                <!-- Movie Information -->
                 <div class="movie-body">
-
                     <h3 class="movie-title">
                         {{ movie.title }}
                     </h3>
-
                     <p class="movie-meta">
                         {{ movie.releaseDate | date:'yyyy' }}
                         ·
                         {{ movie.genres.join(' · ') }}
                     </p>
-
-                    <!-- Rating -->
                     <div class="movie-rating">
-
                         <mat-icon>
                             star
                         </mat-icon>
-
                         <span class="rating-value">
                             {{ movie.averageRating || 0 | number:'1.1-1' }}
                         </span>
-
                         <span class="rating-max">
                             /10
                         </span>
-
                     </div>
-
-
-                    <!-- Rating Bar -->
                     <div class="rating-track">
-
-                        <i
-                            [style.width.%]="(movie.averageRating || 0) * 10">
+                        <i [style.width.%]="(movie.averageRating || 0) * 10">
                         </i>
-
                     </div>
-
-
-                    <!-- Total Ratings -->
                     <p class="movie-votes">
-
                         {{ movie.totalRatings || 0 }}
                         ratings
-
                     </p>
-
                 </div>
-
             </mat-card>
-
         </div>
-
-
-        <!-- No Movies -->
         <div
             class="no-movies"
             *ngIf="filteredMovies.length === 0">
-
             <mat-icon>
                 movie_off
             </mat-icon>
-
             <p>
                 No movies found.
             </p>
-
         </div>
-
     </div>
-
 </div>

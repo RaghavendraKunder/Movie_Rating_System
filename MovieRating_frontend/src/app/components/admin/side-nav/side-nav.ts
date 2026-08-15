@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-side-nav',
@@ -6,4 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './side-nav.html',
   styleUrls: ['./side-nav.css'],
 })
-export class SideNav {}
+export class SideNav {
+   @Input() collapsed = false;
+}

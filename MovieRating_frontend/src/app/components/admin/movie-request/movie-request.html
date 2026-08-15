@@ -11,27 +11,39 @@
         </h2>
         <h5 class="desc">Review user-submitted movie requests</h5>
         <div class="cards">
-            <mat-card class="card display">
-                <mat-icon>local_movies</mat-icon>
-                <h2>120</h2>
-                <p>Total Movies</p>
-            </mat-card>
-            <mat-card class="card display">
-                <mat-icon>star_rate</mat-icon>
-                <h2>20</h2>
-                <p>Total Movies</p>
-            </mat-card>
-            <mat-card class="card display">
-                <mat-icon>rate_review</mat-icon>
-                <h2>15</h2>
-                <p>Movies You've Rated</p>
-            </mat-card>
-            <mat-card class="card display">
-                <mat-icon>add_circle_outline</mat-icon>
-                <h2>15</h2>
-                <p>Movies You've Added</p>
-            </mat-card>
+    <mat-card class="card display">
+        <mat-icon>local_movies</mat-icon>
+        <div class="stat-info">
+            <h2>120</h2>
+            <p>Total Movies</p>
         </div>
+    </mat-card>
+
+    <mat-card class="card display">
+        <mat-icon>star_rate</mat-icon>
+        <div class="stat-info">
+            <h2>20</h2>
+            <p>Favourites</p>
+        </div>
+    </mat-card>
+
+    <mat-card class="card display">
+        <mat-icon>rate_review</mat-icon>
+        <div class="stat-info">
+            <h2>15</h2>
+            <p>You've Rated</p>
+        </div>
+    </mat-card>
+
+    <mat-card class="card display">
+        <mat-icon>add_circle_outline</mat-icon>
+        <div class="stat-info">
+            <h2>15</h2>
+            <p>You've Added</p>
+        </div>
+    </mat-card>
+
+</div>
         <mat-form-field appearance="outline" class="search-box">
         <mat-label id="searchBar">Search</mat-label>
         <input matInput placeholder="e.g. The Dark Knight">
@@ -44,6 +56,129 @@
                 <mat-option value="two">Second option</mat-option>
             </mat-select>
         </mat-form-field>
+        <!-- REQUEST CONTENT -->
+<div class="request-section">
+
+    <!-- LEFT: REQUEST LIST -->
+    <div class="request-list">
+
+        <div class="request-item active">
+            <div class="request-title">
+                Decision to Leave
+                <span class="status pending">Hold</span>
+            </div>
+
+            <div class="request-user">
+                Requested by: Min-ho Park
+            </div>
+
+            <div class="request-meta">
+                2022 • Park Chan-wook
+            </div>
+        </div>
+
+        <div class="request-item">
+
+            <div class="request-title">
+                Beau Is Afraid
+            </div>
+
+            <div class="request-user">
+                Requested by: Alex Turner
+            </div>
+
+            <div class="request-meta">
+                2023 • Ari Aster
+            </div>
+
+        </div>
+
+        <div class="request-item">
+
+            <div class="request-title">
+                Stalker (Restored)
+            </div>
+
+            <div class="request-user">
+                Requested by: TarikovskiyFan92
+            </div>
+
+            <div class="request-meta">
+                1979 • Andrei Tarkovsky
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT: REQUEST DETAILS -->
+    <div class="request-details">
+
+        <div class="poster">
+            <span>POSTER</span>
+        </div>
+
+        <div class="details-content">
+
+            <h2>Decision to Leave</h2>
+
+            <p class="director">
+                HEO JIL KYOLSIN
+            </p>
+
+            <div class="movie-tags">
+                <span>4K UHD</span>
+                <span>KOREAN</span>
+                <span>138 MIN</span>
+            </div>
+
+            <p class="description">
+                A detective investigating a man's death in the mountains
+                meets the dead man's mysterious wife in the course of his
+                dogged sleuthing.
+            </p>
+
+            <div class="user-comment">
+
+                <h4>USER COMMENT</h4>
+
+                <p>
+                    "The cinematography is unmatched. We need the 4K criteria
+                    restoration for the server archives. High priority for
+                    the cinephile group."
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTION AREA -->
+        <div class="request-actions">
+
+            <div class="request-reference">
+                REF: RQG-8821-X &nbsp;&nbsp; • &nbsp;&nbsp;
+                PRIORITY: HIGH
+            </div>
+
+            <div class="action-buttons">
+
+                <button mat-stroked-button class="reject-btn">
+                    Reject
+                </button>
+
+                <button mat-raised-button class="approve-btn">
+                    Approve Request
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
         
     </div>
 

@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Sidebar} from '../../../services/sidebar';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -6,7 +7,8 @@ import { Component } from '@angular/core';
   templateUrl: './admin-dashboard.html',
   styleUrls: ['./admin-dashboard.css'],
 })
-export class AdminDashboard {
+export class AdminDashboard implements OnInit {
+
   topRated = [
     {
       title: 'Oppenheimer',
@@ -77,7 +79,15 @@ export class AdminDashboard {
     }
   ];
 
-  constructor() {
+  sidebarCollapsed = false;
+
+  constructor(private sidebarService: Sidebar) {}
+  ngOnInit(): void {
+    this.sidebarService.collapsed$.subscribe(
+      collapsed => {
+        this.sidebarCollapsed = collapsed;
+      }
+    );
   }
 
 }

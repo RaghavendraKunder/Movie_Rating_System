@@ -19,7 +19,7 @@ color:white;
 
 #profileCircle{
   color:white;
-  font-size: 28px;      /* Default is 24px */
+  font-size: 28px;     
     width: 28px;
     height: 28px;
     line-height: 28px;
@@ -30,8 +30,14 @@ color:white;
     padding: 4px;
 }
 
-#menuButton{
-  color:#D4AF37;
+#menuButton {
+    color: #D4AF37;
+    transition: 0.2s ease;
+}
+
+#menuButton:hover {
+    background: rgba(212, 175, 55, 0.08);
+    color: #ffffff;
 }
 
 .spacer{

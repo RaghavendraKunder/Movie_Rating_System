@@ -1,26 +1,67 @@
 .dashboard-container{   
     display:flex;
-    background:  radial-gradient(
-            circle at bottom right,
-            #3c77dd 0%,
-            #295eb8 5%,
-            #183b73 12%,
-            #10264a 15%,
-            #081120 25%,
-            #081120 100%
-    );
+    background: radial-gradient(
+     circle at bottom right,
+    #10264A 0%,
+    #10264A 8%,
+    #0D2040 18%,
+    #0A1932 30%,
+    #081326 45%,
+    #060D1B 65%,
+    #050A14 85%,
+    #050A14 100%
+);
 height:calc(100vh - 64px);
 }
 
-.sidebar{
-    width:200px;
-    background:#1e293b;
+.sidebar {
+    width: 220px;
+    background: #0B1222;
+    transition: width 0.25s ease;
+    overflow: hidden;
 }
 
-.main-content{
-    flex:1;
-    padding:25px;
-    overflow:auto;
+.sidebar.collapsed {
+    width: 70px;
+}
+
+/* COLLAPSED SIDEBAR */
+.dashboard-container.sidebar-collapsed .sidebar {
+    width: 70px;
+}
+
+/* Navigation item when collapsed */
+.dashboard-container.sidebar-collapsed .nav-item {
+    width: 50px !important;
+    min-width: 50px !important;
+    max-width: 50px !important;
+    height: 44px;
+    margin: 8px auto !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-sizing: border-box;
+    gap: 0 !important;
+}
+
+/* Icon stays exactly in the center */
+.dashboard-container.sidebar-collapsed .nav-item mat-icon {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.main-content {
+    flex: 1;
+    padding: 25px;
+    overflow: auto;
+    transition: margin-left 0.25s ease;
 }
 
 .title{
@@ -28,7 +69,7 @@ height:calc(100vh - 64px);
     font-weight:bold;
     margin-bottom:25px;
     color:white;
-   text-shadow:
+    text-shadow:
         0 0 5px rgba(100, 180, 255, 0.8),
         0 0 10px rgba(100, 180, 255, 0.6),
         0 0 20px rgba(100, 180, 255, 0.4);

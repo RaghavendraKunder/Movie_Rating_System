@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
-<div class="dashboard-container">
+<div class="dashboard-container" [class.sidebar-collapsed]="sidebarCollapsed">
     <!-- Side Navigation -->
    <div class="sidebar">
-        <app-side-nav></app-side-nav>
+        <app-side-nav [collapsed]="sidebarCollapsed"></app-side-nav>
     </div>
     <!-- Main Content -->
     <div class="main-content">

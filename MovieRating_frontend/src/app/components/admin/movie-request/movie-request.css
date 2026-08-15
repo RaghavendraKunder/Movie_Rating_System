@@ -1,14 +1,16 @@
 .allMovies-container{
     display: flex;
-    background:  radial-gradient(
-        circle at bottom right,
-            #3c77dd 0%,
-            #295eb8 5%,
-            #183b73 12%,
-            #10264a 15%,
-            #081120 25%,
-            #081120 100%
-        );
+    background: radial-gradient(
+     circle at bottom right,
+    #10264A 0%,
+    #10264A 8%,
+    #0D2040 18%,
+    #0A1932 30%,
+    #081326 45%,
+    #060D1B 65%,
+    #050A14 85%,
+    #050A14 100%
+);
     height:calc(100vh - 64px);
 }
 
@@ -34,47 +36,67 @@
         0 0 20px rgba(100, 180, 255, 0.4);
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:20px;
+.cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 14px;
+
+    width: 100%;
+
+    margin: 20px 0 28px;
 }
 
-.card{
-    padding:25px;
-    text-align:center;
-    color:white;
-    border-radius:10px;
-    margin-top:10px;
-    margin-bottom:30px;
+.card {
+    color: white;
+
+    border-radius: 8px;
+
+    padding: 12px 14px;
+
+    min-height: 85px;
+
+    box-sizing: border-box;
 }
 
-.card mat-icon{
-    font-size:35px;
-    height:35px;
-    width:35px;
-    margin-bottom:10px;
-}
+.card mat-icon {
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
 
-.display{
-    background:
-        radial-gradient(
-            circle at center,
-            #5ea8ff 0%,
-            #4284e8 4%,
-            #295eb8 12%,
-            #1e4a87 25%,
-            #173867 40%,
-            #12274a 55%,
-            #0d1d36 70%,
-            #0a1528 85%,
-            #081120 100%
-        );
-    border-radius:16px;
-    border:1px solid rgba(255,255,255,.08);
+    color: #f4c542;
+
+    margin-bottom: 8px;
+}
+.display {
+    background: #0d1a33 !important;
+
+    border: 1px solid #263b5e !important;
+
+    border-radius: 8px !important;
+
     box-shadow:
-        0 8px 25px rgba(0,0,0,.35),
-        0 0 20px rgba(94,168,255,.12);
+        0 4px 12px rgba(0, 0, 0, 0.18);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.display:hover {
+    border-color: rgba(212, 175, 55, 0.45) !important;
+    box-shadow:
+        0 0 6px rgba(212, 175, 55, 0.18),
+        0 0 14px rgba(212, 175, 55, 0.08);
+    color: #f4c542;
+
+    transform: translateY(-1px);
+}
+
+.card.display:hover mat-icon {
+    color: white;
 }
 
 .desc{
@@ -87,9 +109,6 @@
         0 0 20px rgba(100, 180, 255, 0.4);
 }
 
-.search-box {
-    border-width: 5px !important;   /* Increase to 3px if you want */
-}
 
 #searchBar{
     font-weight:bold;
@@ -102,7 +121,7 @@
 
 .search-box {
     --mat-sys-primary: #F4C542;
-    width:710px;
+    width:660px;
     margin-right:50px;
 }
 
@@ -252,4 +271,422 @@ mat-select{
 
     color:#F4C542;
 
+}
+
+/* =========================================
+   REQUEST SECTION
+========================================= */
+
+.request-section {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 12px;
+
+    width: 100%;
+    min-height: 235px;
+
+    margin-top: 8px;
+}
+
+
+/* =========================================
+   LEFT REQUEST LIST
+========================================= */
+
+.request-list {
+    background: #0b1629;
+
+    border: 1px solid rgba(125, 179, 255, 0.16);
+
+    border-radius: 7px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(59, 130, 246, 0.04);
+}
+
+
+/* Individual request */
+
+.request-item {
+    position: relative;
+
+    min-height: 70px;
+
+    padding: 12px 10px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.request-item:last-child {
+    border-bottom: none;
+}
+
+
+.request-item:hover {
+    background: #11213d;
+}
+
+
+/* Selected request */
+
+.request-item.active {
+    background:
+        linear-gradient(
+            90deg,
+            #13294a,
+            #0d1c32
+        );
+
+    border-left: 2px solid #F4C542;
+
+    box-shadow:
+        inset 0 0 15px rgba(244, 197, 66, 0.04);
+}
+
+
+/* =========================================
+   REQUEST TITLE
+========================================= */
+
+.request-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 5px;
+
+    color: #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    margin-bottom: 6px;
+}
+
+
+.request-user {
+    color: #a9b8ce;
+
+    font-size: 8px;
+
+    margin-bottom: 5px;
+}
+
+
+.request-meta {
+    color: #687b9a;
+
+    font-size: 7px;
+}
+
+
+/* =========================================
+   STATUS
+========================================= */
+
+.status {
+    padding: 2px 5px;
+
+    border-radius: 20px;
+
+    font-size: 6px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+.status.pending {
+    color: #F4C542;
+
+    background: rgba(244, 197, 66, 0.12);
+
+    border: 1px solid rgba(244, 197, 66, 0.25);
+}
+
+
+/* =========================================
+   RIGHT DETAILS PANEL
+========================================= */
+
+.request-details {
+
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 92px 1fr;
+
+    column-gap: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0c182c,
+            #0b1729
+        );
+
+    border: 1px solid rgba(125, 179, 255, 0.18);
+
+    border-radius: 7px;
+
+    padding: 16px;
+
+    min-width: 0;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.35),
+        0 0 20px rgba(59, 130, 246, 0.05);
+}
+
+
+/* =========================================
+   POSTER
+========================================= */
+
+.poster {
+
+    width: 90px;
+
+    height: 138px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #050a14;
+
+    border: 1px solid rgba(255, 255, 255, 0.08);
+
+    color: #61718a;
+
+    font-size: 7px;
+
+    letter-spacing: 1px;
+
+    border-radius: 2px;
+}
+
+
+/* =========================================
+   DETAILS
+========================================= */
+
+.details-content h2 {
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-size: 19px;
+
+    font-weight: 700;
+
+    text-shadow:
+        0 0 5px rgba(100, 180, 255, 0.6),
+        0 0 12px rgba(100, 180, 255, 0.3);
+}
+
+
+.director {
+
+    margin: 3px 0 8px;
+
+    color: #6e89ad;
+
+    font-size: 7px;
+
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================================
+   MOVIE TAGS
+========================================= */
+
+.movie-tags {
+
+    display: flex;
+
+    gap: 5px;
+
+    margin-bottom: 12px;
+}
+
+
+.movie-tags span {
+
+    padding: 3px 6px;
+
+    border-radius: 3px;
+
+    background: #14243d;
+
+    border: 1px solid rgba(125, 179, 255, 0.15);
+
+    color: #c8d5e8;
+
+    font-size: 6px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.description {
+
+    max-width: 520px;
+
+    margin: 0 0 12px;
+
+    color: #aab8ca;
+
+    font-size: 8px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   USER COMMENT
+========================================= */
+
+.user-comment h4 {
+
+    margin: 0 0 4px;
+
+    color: #61799b;
+
+    font-size: 6px;
+
+    letter-spacing: 1px;
+}
+
+
+.user-comment p {
+
+    margin: 0;
+
+    max-width: 500px;
+
+    color: #8fa0b8;
+
+    font-size: 7px;
+
+    font-style: italic;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   ACTION AREA
+========================================= */
+
+.request-actions {
+
+    position: absolute;
+
+    bottom: 0;
+
+    left: 16px;
+    right: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 10px 0;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+
+.request-reference {
+
+    color: #60718d;
+
+    font-size: 6px;
+
+    letter-spacing: 0.5px;
+}
+
+
+.action-buttons {
+
+    display: flex;
+
+    gap: 7px;
+}
+
+
+/* =========================================
+   REJECT
+========================================= */
+
+.reject-btn {
+
+    min-width: 48px !important;
+
+    height: 27px !important;
+
+    padding: 0 12px !important;
+
+    color: #d8e0eb !important;
+
+    border-color: rgba(255, 255, 255, 0.15) !important;
+
+    font-size: 8px !important;
+}
+
+
+/* =========================================
+   APPROVE
+========================================= */
+
+.approve-btn {
+
+    height: 27px !important;
+
+    padding: 0 14px !important;
+
+    background: #F4C542 !important;
+
+    color: #081120 !important;
+
+    font-size: 8px !important;
+
+    font-weight: 700 !important;
+
+    box-shadow:
+        0 0 10px rgba(244, 197, 66, 0.25);
+}
+
+
+.approve-btn:hover {
+
+    background: #ffd65c !important;
+
+    box-shadow:
+        0 0 15px rgba(244, 197, 66, 0.4);
 }

@@ -34,5 +34,6 @@ public interface GenreRepository extends JpaRepository<Genre, Long> {
     // ==========================
 
     List<Genre> findAllByOrderByNameAsc();
+    
 
 }
