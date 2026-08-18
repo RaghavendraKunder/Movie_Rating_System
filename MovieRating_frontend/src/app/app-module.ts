@@ -22,7 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { RouterModule } from '@angular/router';
 import { AllMovies } from './components/admin/all-movies/all-movies';
 import { AddMovies } from './components/admin/add-movies/add-movies';
@@ -40,6 +40,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { jwtInterceptor } from './interceptors/jwt-interceptor';
 import { UserMovieDetails } from './components/user/user-movie-details/user-movie-details';
 import { MovieDetails } from './components/admin/movie-details/movie-details';
+import { AddRequest } from './components/user/add-request/add-request';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MovieDetails } from './components/admin/movie-details/movie-details';
     MovieRequest,
     UserMovieDetails,
     MovieDetails,
+    AddRequest,
   ],
   imports: [
     BrowserModule,

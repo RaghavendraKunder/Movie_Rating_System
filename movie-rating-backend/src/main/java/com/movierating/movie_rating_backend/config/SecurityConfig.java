@@ -96,6 +96,12 @@ public class SecurityConfig {
 
                 	    .requestMatchers("/api/user/**")
                 	    .hasAnyRole("USER", "ADMIN")
+                	    
+                	    .requestMatchers(
+                	            org.springframework.http.HttpMethod.POST,
+                	            "/api/movie-requests"
+                	    )
+                	    .hasAnyRole("USER", "ADMIN")
 
                 	    .anyRequest()
                 	    .authenticated()

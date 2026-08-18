@@ -1,109 +1,293 @@
-.allMovies-container{
-
+.allMovies-container {
     display: flex;
-    background:  radial-gradient(
-        circle at bottom right,
-            #3c77dd 0%,
-            #295eb8 5%,
-            #183b73 12%,
-            #10264a 15%,
-            #081120 25%,
-            #081120 100%
-        );
-    height:calc(100vh - 64px);
+
+background: radial-gradient(
+     circle at bottom right,
+    #10264A 0%,
+    #10264A 8%,
+    #0D2040 18%,
+    #0A1932 30%,
+    #081326 45%,
+    #060D1B 65%,
+    #050A14 85%,
+    #050A14 100%
+);
+    min-height: calc(100vh - 64px);
 }
 
-.sidebar{
 
-width:200px;
-
-background:#1e293b;
-
+/* =========================
+   SIDEBAR
+========================= */
+.sidebar {
+    width: 200px;
+    background: #1e293b;
+    flex-shrink: 0;
 }
 
-.main-content{
-
-flex:1;
-
-padding:25px;
-
-overflow:auto;
-
+/* =========================
+   MAIN CONTENT
+========================= */
+.main-content {
+    flex: 1;
+    padding: 25px;
+    overflow: auto;
 }
-.title{
 
-font-size:30px;
-
-font-weight:bold;
-
-margin-bottom:5px;
-
-color:white;
-
-   text-shadow:
+/* =========================
+   PAGE TITLE
+========================= */
+.title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: white;
+    text-shadow:
         0 0 5px rgba(100, 180, 255, 0.8),
         0 0 10px rgba(100, 180, 255, 0.6),
         0 0 20px rgba(100, 180, 255, 0.4);
-
 }
 
-.desc{
-  font-size:15px;
-
-
-margin-bottom:25px;
-
-color:white;
-
-   text-shadow:
+.desc {
+    font-size: 15px;
+    margin-bottom: 25px;
+    color: white;
+    text-shadow:
         0 0 3px rgba(100, 180, 255, 0.8),
         0 0 8px rgba(100, 180, 255, 0.6),
         0 0 20px rgba(100, 180, 255, 0.4);
-  
+}
+
+/* =========================
+   SEARCH + FILTER
+========================= */
+.search-filter-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
 }
 
 .search-box {
-    border-width: 5px !important;   /* Increase to 3px if you want */
+    --mat-sys-primary: #F4C542;
+    width: 710px;
+    margin-right: 50px;
 }
 
-#searchBar{
-    font-weight:bold;
-    color:white;
+.search-box mat-icon {
+    color: #F4C542;
+}
+
+#searchBar {
+    font-weight: bold;
+    color: white;
     text-shadow:
         0 0 3px rgba(100, 180, 255, 0.8),
         0 0 6px rgba(100, 180, 255, 0.6),
         0 0 10px rgba(100, 180, 255, 0.4);
 }
 
-.search-box {
+.filter-box {
     --mat-sys-primary: #F4C542;
-    width:710px;
-    margin-right:50px;
+    width: 350px;
 }
 
-.search-box mat-icon{
-    color:#F4C542;
-}
 
-#filterBar{
-     font-weight:bold;
-    color:white;
+#filterBar {
+    font-weight: bold;
+    color: white;
     text-shadow:
         0 0 2px rgba(100, 180, 255, 0.8),
         0 0 4px rgba(100, 180, 255, 0.6),
         0 0 8px rgba(100, 180, 255, 0.4);
 }
 
-.filter-box{
-   --mat-sys-primary: #F4C542;
-    width:350px; 
-}
 
-mat-select{
-    width:100%;
-    color:white;
+mat-select {
+    width: 100%;
+    color: white;
     text-shadow:
         0 0 1px rgba(100, 180, 255, 0.8),
         0 0 2px rgba(100, 180, 255, 0.6),
         0 0 6px rgba(100, 180, 255, 0.4);
+}
+
+/* =========================
+   MOVIE GRID
+========================= */
+.movies-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fill, minmax(220px, 1fr));
+    gap: 22px;
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+/* =========================
+   MOVIE CARD
+========================= */
+.movie-card {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    padding: 10px;
+    border-radius: 15px;
+    background:  #0d1a33 !important;
+    border: 1px solid rgba(90, 150, 240, 0.45);
+    box-shadow:
+        0 0 8px rgba(60, 119, 221, 0.15);
+    overflow: hidden;
+    box-sizing: border-box;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+/* Hover */
+.movie-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+        0 0 6px rgba(212, 175, 55, 0.18),
+        0 0 14px rgba(212, 175, 55, 0.08);
+}
+
+/* =========================
+   RANK
+========================= */
+.movie-rank {
+    position: absolute;
+    top: 3px;
+    right: 7px;
+    font-size: 32px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.08);
+    z-index: 2;
+}
+
+/* =========================
+   POSTER
+========================= */
+.movie-poster {
+    width: 100%;
+    height: 285px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #081120;
+}
+
+.movie-poster img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* =========================
+   MOVIE BODY
+========================= */
+.movie-body {
+    padding: 5px 8px 3px;
+}
+
+/* Title */
+.movie-title {
+    margin: 3px 0 4px;
+    font-size: 17px;
+    font-weight: 700;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Year + Genre */
+.movie-meta {
+    margin: 0 0 9px;
+    font-size: 12px;
+    color: #a9c4e8;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =========================
+   RATING
+========================= */
+.movie-rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.movie-rating mat-icon {
+    color: #F4C542;
+    font-size: 19px;
+    width: 19px;
+    height: 19px;
+}
+
+.rating-value {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.rating-max {
+    color: #8fa8cc;
+    font-size: 12px;
+}
+
+/* =========================
+   RATING BAR
+========================= */
+.rating-track {
+    height: 4px;
+    width: 100%;
+    background: #29456e;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 7px;
+}
+
+.rating-track i {
+    display: block;
+    height: 100%;
+    background: #8fc3ff;
+    border-radius: 5px;
+}
+
+/* =========================
+   RATINGS COUNT
+========================= */
+.movie-votes {
+    margin: 0;
+    font-size: 11px;
+    color: #8fa8cc;
+}
+
+/* =========================
+   NO MOVIES
+========================= */
+.no-movies {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 0;
+    color: #8fa8cc;
+}
+
+.no-movies mat-icon {
+    font-size: 45px;
+    width: 45px;
+    height: 45px;
+    color: #F4C542;
+    margin-bottom: 10px;
+}
+
+.no-movies p {
+    margin: 0;
+    font-size: 16px;
 }

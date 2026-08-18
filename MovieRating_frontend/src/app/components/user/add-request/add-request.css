@@ -1,0 +1,165 @@
+.navbar{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:60px;
+}
+.addMovies-container{
+    display:flex;
+    background:  radial-gradient(
+        circle at bottom right,
+            #3c77dd 0%,
+            #295eb8 5%,
+            #183b73 12%,
+            #10264a 15%,
+            #081120 25%,
+            #081120 100%
+        );
+}
+
+.add-movies-container{
+    flex:1;
+    justify-content:center;
+    padding:30px;
+    margin-left:50px;    
+}
+
+.sidebar{
+    width:200px;
+    background:#1e293b;
+    flex-shrink:0;
+}
+
+.main-content {
+    flex: 1;
+    padding: 25px;
+    overflow: visible;
+}
+
+.title{
+    font-size:30px;
+    font-weight:bold;
+    margin-bottom:5px;
+    color:white;
+    text-shadow:
+        0 0 5px rgba(100, 180, 255, 0.8),
+        0 0 10px rgba(100, 180, 255, 0.6),
+        0 0 20px rgba(100, 180, 255, 0.4);
+}
+
+.movie-card{
+    width:900px;
+    border-radius:18px;
+    margin-top:30px;
+    margin-left:75px;
+    background:
+        radial-gradient(circle at top left,
+        rgba(60, 119, 221, 0.22) 0%,
+        rgba(60, 119, 221, 0.12) 12%,
+        rgba(60, 119, 221, 0.05) 22%,
+        transparent 35%),
+        radial-gradient(circle at top right,
+        rgba(60, 119, 221, 0.22) 0%,
+        rgba(60, 119, 221, 0.12) 12%,
+        rgba(60, 119, 221, 0.05) 22%,
+        transparent 35%),
+        radial-gradient(circle at bottom left,
+        rgba(60, 119, 221, 0.22) 0%,
+        rgba(60, 119, 221, 0.12) 12%,
+        rgba(60, 119, 221, 0.05) 22%,
+        transparent 35%),
+        radial-gradient(circle at bottom right,
+        rgba(60, 119, 221, 0.22) 0%,
+        rgba(60, 119, 221, 0.12) 12%,
+        rgba(60, 119, 221, 0.05) 22%,
+        transparent 35%),
+    #081120;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    box-shadow:
+        0 0 6px rgba(212, 175, 55, 0.18),
+        0 0 14px rgba(212, 175, 55, 0.08);
+}
+
+.full-width-textarea{
+    width:100%;
+    --mat-sys-primary: #F4C542;
+}
+
+.full-width{
+    width:100%;
+    --mat-sys-primary: #F4C542;
+}
+
+.row{
+    display:flex;
+    gap:20px;
+    --mat-sys-primary: #F4C542;
+}
+
+.row mat-form-field{
+    flex:1;
+}
+
+.button-row{
+    margin-top:25px;
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+}
+
+.add-btn {
+    color: #081120 !important;
+    font-weight: 600;
+}
+.add-btn mat-icon {
+    color: #081120 !important;
+}
+
+.reset-btn{ 
+     color: #D4AF37!important;  
+    font-weight: 600;
+} 
+
+mat-card-title{
+    font-size:25px;
+    font-weight:bold;
+    color:white;
+    text-shadow:
+        0 0 5px rgba(100, 180, 255, 0.8),
+        0 0 10px rgba(100, 180, 255, 0.6),
+        0 0 20px rgba(100, 180, 255, 0.4);
+    padding-bottom:15px;   
+    padding-left:8px;
+}
+
+mat-label{
+    color:white;
+    text-shadow:
+        0 0 6px rgba(100, 180, 255, 0.8),
+        0 0 5px rgba(100, 180, 255, 0.6),
+        0 0 10px rgba(100, 180, 255, 0.4);
+}
+
+mat-icon{
+    color:#D4AF37;
+}
+
+.mat-mdc-input-element {
+    color: white !important;
+    text-shadow:
+        0 0 5px rgba(100, 180, 255, 0.5),
+        0 0 10px rgba(100, 180, 255, 0.25);
+}       
+
+mat-select {
+    color: white !important;
+}
+
+.mat-mdc-select-value {
+    color: white !important;
+}
+
+.mat-mdc-option.mdc-list-item--selected {
+    background-color: rgba(212, 175, 55, 0.15) !important;
+}

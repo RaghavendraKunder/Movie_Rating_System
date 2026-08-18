@@ -1,0 +1,126 @@
+<app-navbar></app-navbar>
+<div class="addMovies-container">
+    <!-- Side Navigation -->
+    <div class="sidebar">
+        <app-use-side-nav></app-use-side-nav>
+    </div>
+    <!-- Main Content -->
+    <div class="add-movie-container">
+        <mat-card class="movie-card">
+            <mat-card-header>
+                <mat-card-title>New Movie Request</mat-card-title>
+            </mat-card-header>
+        <mat-card-content>
+            <form [formGroup]="movieForm"  (ngSubmit)="sendRequest()">
+                <!-- Movie Title -->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Movie Title</mat-label>
+                    <input matInput formControlName="title">
+                    <mat-icon matSuffix>movie</mat-icon>
+                </mat-form-field>
+                <!-- Description -->
+                <mat-form-field appearance="outline" class="full-width-textarea">
+                    <mat-label>Description</mat-label>
+                    <textarea
+                        matInput
+                        rows="5"
+                        formControlName="description">
+                    </textarea>
+                </mat-form-field>
+                <!-- Row 1 -->
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Release Date</mat-label>
+                        <input
+                            matInput
+                            [matDatepicker]="picker"
+                            formControlName="releaseDate">
+                        <mat-datepicker-toggle
+                            matSuffix
+                            [for]="picker">
+                        </mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Duration (Minutes)</mat-label>
+                        <input
+                            matInput
+                            type="number"
+                            formControlName="duration">
+                    </mat-form-field>
+
+                </div>
+                <!-- Row 2 -->
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Language</mat-label>
+                        <mat-select formControlName="language">
+                            <mat-option value="English">English</mat-option>
+                            <mat-option value="Hindi">Hindi</mat-option>
+                            <mat-option value="Kannada">Kannada</mat-option>
+                            <mat-option value="Tamil">Tamil</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Genres</mat-label>
+                        <mat-select
+                            formControlName="genreIds" multiple>
+                            @for (genre of genres; track genre.id) {
+                                <mat-option [value]="genre.id">
+                                    {{ genre.name }}
+                                </mat-option>
+                            }
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <!-- Director -->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Director</mat-label>
+                    <input matInput formControlName="director">
+                </mat-form-field>
+                <!-- Cast -->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Cast</mat-label>
+                    <input
+                        matInput
+                        placeholder="Actor 1, Actor 2..."
+                        formControlName="cast">
+                </mat-form-field>
+                <!-- Poster -->
+                <div class="row">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Poster URL</mat-label>
+                        <input
+                            matInput
+                            formControlName="posterUrl">
+                    </mat-form-field>  
+                <!-- Trailer -->
+                <mat-form-field appearance="outline">
+                        <mat-label>Trailer URL</mat-label>
+                        <input
+                            matInput
+                            formControlName="trailerUrl">
+                    </mat-form-field>
+                </div>    
+                <!-- Buttons -->
+                <div class="button-row">
+                    <button
+                        mat-raised-button  class="add-btn"
+                        type="submit" [disabled]="isSubmitting">
+                        <mat-icon>add_circle</mat-icon>
+                        {{ isSubmitting ? 'Sending Request...' : 'Send Request' }}
+                    </button>
+                    <button
+                        mat-stroked-button
+                        color="warn"
+                        type="reset"
+                        class="reset-btn">
+                        <mat-icon>refresh</mat-icon>
+                        Reset
+                    </button>
+                </div>
+            </form>
+        </mat-card-content>
+        </mat-card>
+    </div>    
+</div>

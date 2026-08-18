@@ -14,6 +14,8 @@ import { UserWatchlist } from './components/user/user-watchlist/user-watchlist';
 import { UserMyRatings } from './components/user/user-my-ratings/user-my-ratings';
 import {MovieRequest} from './components/admin/movie-request/movie-request';
 import { MovieDetails } from './components/admin/movie-details/movie-details';
+import { AddRequest } from './components/user/add-request/add-request';
+import { UserMovieDetails } from './components/user/user-movie-details/user-movie-details';
 
 
 
@@ -29,11 +31,13 @@ const routes: Routes = [
   { path: 'add-movies', component: AddMovies},
   { path: 'user-dashboard', component: UserDashboard},
   { path: 'use-side-nav', component: UseSideNav},
+  { path: 'add-request', component: AddRequest},
   { path: 'user-all-movies', component: UserAllMovies},
   { path: 'user-watchlist', component: UserWatchlist},
   { path: 'user-my-ratings', component: UserMyRatings},
   { path: 'movie-request', component: MovieRequest},
-  { path: 'movie-details/:id', component: MovieDetails}
+  { path: 'movie-details/:id', component: MovieDetails},
+  { path: 'user-movie-details/:id', component:UserMovieDetails}
 ];
 
 @NgModule({
