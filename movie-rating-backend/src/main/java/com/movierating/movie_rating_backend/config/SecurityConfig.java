@@ -97,14 +97,25 @@ public class SecurityConfig {
                 	    .requestMatchers("/api/user/**")
                 	    .hasAnyRole("USER", "ADMIN")
                 	    
+                	 // =========================================================
+                	 // MOVIE REQUEST APIs
+                	 // =========================================================
+
                 	    .requestMatchers(
                 	            org.springframework.http.HttpMethod.POST,
                 	            "/api/movie-requests"
                 	    )
                 	    .hasAnyRole("USER", "ADMIN")
 
-                	    .anyRequest()
-                	    .authenticated()
+                	    // ADMIN can approve/reject
+                	    .requestMatchers(
+                	            org.springframework.http.HttpMethod.PUT,
+                	            "/api/movie-requests/**"
+                	    )
+                	    .hasRole("ADMIN")
+
+
+                	    .anyRequest().authenticated()
                 	)
                 .authenticationProvider(authenticationProvider())
 

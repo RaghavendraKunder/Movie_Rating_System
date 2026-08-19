@@ -76,6 +76,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
                 SecurityContextHolder.getContext()
                         .setAuthentication(authToken);
+                System.out.println("=================================");
+                System.out.println("JWT AUTHENTICATION SUCCESS");
+                System.out.println("User: " + userDetails.getUsername());
+                System.out.println("Authorities: " + userDetails.getAuthorities());
+                System.out.println("Request: " + request.getServletPath());
+                System.out.println("=================================");
+
+            } else {
+
+                System.out.println("=================================");
+                System.out.println("JWT TOKEN INVALID");
+                System.out.println("User: " + userEmail);
+                System.out.println("Request: " + request.getServletPath());
+                System.out.println("=================================");
+
             }
         }
 

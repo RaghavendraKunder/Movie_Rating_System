@@ -16,4 +16,5 @@ public interface MovieRequestRepository
 
     List<MovieRequestEntity> findByUserId(Long userId);
 
+    List<MovieRequestEntity> findAllByOrderByRequestedAtDesc();
 }

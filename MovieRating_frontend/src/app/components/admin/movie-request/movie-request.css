@@ -272,20 +272,24 @@ mat-select{
     color:#F4C542;
 
 }
-
 /* =========================================
    REQUEST SECTION
+   Slightly smaller LEFT list + larger RIGHT
 ========================================= */
 
 .request-section {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    gap: 12px;
+
+    /* LEFT reduced slightly */
+    grid-template-columns: 270px minmax(0, 1fr);
+
+    gap: 14px;
 
     width: 100%;
-    min-height: 235px;
 
-    margin-top: 8px;
+    min-height: 500px;
+
+    margin-top: 12px;
 }
 
 
@@ -294,30 +298,37 @@ mat-select{
 ========================================= */
 
 .request-list {
+
     background: #0b1629;
 
-    border: 1px solid rgba(125, 179, 255, 0.16);
+    border: 1px solid rgba(125, 179, 255, 0.18);
 
-    border-radius: 7px;
+    border-radius: 8px;
 
-    overflow: hidden;
+    overflow-y: auto;
+
+    max-height: 520px;
 
     box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.3),
-        0 0 15px rgba(59, 130, 246, 0.04);
+        0 8px 22px rgba(0, 0, 0, 0.3),
+        0 0 15px rgba(59, 130, 246, 0.05);
 }
 
 
-/* Individual request */
+/* =========================================
+   REQUEST ITEM
+========================================= */
 
 .request-item {
+
     position: relative;
 
-    min-height: 70px;
+    min-height: 112px;
 
-    padding: 12px 10px;
+    padding: 17px 15px;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom:
+        1px solid rgba(255, 255, 255, 0.07);
 
     cursor: pointer;
 
@@ -337,20 +348,24 @@ mat-select{
 }
 
 
-/* Selected request */
+/* =========================================
+   SELECTED REQUEST
+========================================= */
 
 .request-item.active {
+
     background:
         linear-gradient(
             90deg,
-            #13294a,
-            #0d1c32
+            #162f55,
+            #102441
         );
 
-    border-left: 2px solid #F4C542;
+    border-left: 3px solid #F4C542;
 
     box-shadow:
-        inset 0 0 15px rgba(244, 197, 66, 0.04);
+        inset 0 0 18px
+        rgba(244, 197, 66, 0.05);
 }
 
 
@@ -359,61 +374,128 @@ mat-select{
 ========================================= */
 
 .request-title {
+
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
-    gap: 5px;
+    gap: 10px;
 
     color: #ffffff;
 
-    font-size: 11px;
+    font-size: 17px;
 
     font-weight: 700;
 
-    margin-bottom: 6px;
-}
-
-
-.request-user {
-    color: #a9b8ce;
-
-    font-size: 8px;
-
-    margin-bottom: 5px;
-}
-
-
-.request-meta {
-    color: #687b9a;
-
-    font-size: 7px;
+    margin-bottom: 10px;
 }
 
 
 /* =========================================
-   STATUS
+   REQUEST USER
 ========================================= */
 
-.status {
-    padding: 2px 5px;
+.request-user {
 
-    border-radius: 20px;
+    color: #b8c6d9;
 
-    font-size: 6px;
+    font-size: 13px;
 
-    font-weight: 700;
-
-    text-transform: uppercase;
+    margin-bottom: 8px;
 }
 
 
+/* =========================================
+   REQUEST META
+========================================= */
+
+.request-meta {
+
+    color: #7189aa;
+
+    font-size: 12px;
+}
+
+
+/* =========================================
+   STATUS CAPSULE
+========================================= */
+
+.status {
+
+    padding: 6px 12px;
+
+    border-radius: 30px;
+
+    font-size: 10px;
+
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    white-space: nowrap;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* PENDING */
+
 .status.pending {
+
     color: #F4C542;
 
-    background: rgba(244, 197, 66, 0.12);
+    background:
+        rgba(244, 197, 66, 0.12);
 
-    border: 1px solid rgba(244, 197, 66, 0.25);
+    border:
+        1px solid rgba(244, 197, 66, 0.35);
+}
+
+
+/* APPROVED */
+
+.status.approved {
+
+    color: #4CAF50;
+
+    background:
+        rgba(76, 175, 80, 0.12);
+
+    border:
+        1px solid rgba(76, 175, 80, 0.35);
+}
+
+
+/* REJECTED */
+
+.status.rejected {
+
+    color: #F44336;
+
+    background:
+        rgba(244, 67, 54, 0.12);
+
+    border:
+        1px solid rgba(244, 67, 54, 0.35);
+}
+
+
+/* =========================================
+   NO REQUESTS
+========================================= */
+
+.no-requests {
+
+    padding: 30px 15px;
+
+    text-align: center;
+
+    color: #71829d;
+
+    font-size: 12px;
 }
 
 
@@ -427,9 +509,12 @@ mat-select{
 
     display: grid;
 
-    grid-template-columns: 92px 1fr;
+    /*
+       Larger poster column
+    */
+    grid-template-columns: 190px minmax(0, 1fr);
 
-    column-gap: 16px;
+    column-gap: 22px;
 
     background:
         linear-gradient(
@@ -438,13 +523,16 @@ mat-select{
             #0b1729
         );
 
-    border: 1px solid rgba(125, 179, 255, 0.18);
+    border:
+        1px solid rgba(125, 179, 255, 0.20);
 
-    border-radius: 7px;
+    border-radius: 8px;
 
-    padding: 16px;
+    padding: 20px;
 
     min-width: 0;
+
+    min-height: 500px;
 
     box-shadow:
         0 8px 25px rgba(0, 0, 0, 0.35),
@@ -458,31 +546,57 @@ mat-select{
 
 .poster {
 
-    width: 90px;
+    width: 178px;
 
-    height: 138px;
+    height: 270px;
 
     display: flex;
 
     align-items: center;
+
     justify-content: center;
 
     background: #050a14;
 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border:
+        1px solid rgba(255, 255, 255, 0.10);
 
     color: #61718a;
 
-    font-size: 7px;
+    font-size: 10px;
 
     letter-spacing: 1px;
 
-    border-radius: 2px;
+    border-radius: 3px;
+
+    overflow: hidden;
+}
+
+
+.poster img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
 }
 
 
 /* =========================================
-   DETAILS
+   DETAILS CONTENT
+========================================= */
+
+.details-content {
+
+    min-width: 0;
+
+    padding-right: 5px;
+}
+
+
+/* =========================================
+   MOVIE TITLE
 ========================================= */
 
 .details-content h2 {
@@ -491,9 +605,11 @@ mat-select{
 
     color: #ffffff;
 
-    font-size: 19px;
+    font-size: 28px;
 
     font-weight: 700;
+
+    line-height: 1.15;
 
     text-shadow:
         0 0 5px rgba(100, 180, 255, 0.6),
@@ -501,17 +617,21 @@ mat-select{
 }
 
 
+/* =========================================
+   DIRECTOR
+========================================= */
+
 .director {
 
-    margin: 3px 0 8px;
+    margin: 6px 0 14px;
 
-    color: #6e89ad;
+    color: #55a9ff;
 
-    font-size: 7px;
+    font-size: 16px;
 
     font-weight: 600;
 
-    letter-spacing: 1px;
+    letter-spacing: 0.3px;
 }
 
 
@@ -523,25 +643,28 @@ mat-select{
 
     display: flex;
 
-    gap: 5px;
+    flex-wrap: wrap;
 
-    margin-bottom: 12px;
+    gap: 8px;
+
+    margin-bottom: 18px;
 }
 
 
 .movie-tags span {
 
-    padding: 3px 6px;
+    padding: 7px 12px;
 
-    border-radius: 3px;
+    border-radius: 5px;
 
     background: #14243d;
 
-    border: 1px solid rgba(125, 179, 255, 0.15);
+    border:
+        1px solid rgba(125, 179, 255, 0.18);
 
-    color: #c8d5e8;
+    color: #d5e0ef;
 
-    font-size: 6px;
+    font-size: 11px;
 
     font-weight: 600;
 }
@@ -553,29 +676,85 @@ mat-select{
 
 .description {
 
-    max-width: 520px;
+    max-width: 850px;
 
-    margin: 0 0 12px;
+    margin: 0 0 18px;
 
-    color: #aab8ca;
+    color: #b7c4d6;
 
-    font-size: 8px;
+    font-size: 13px;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   MOVIE INFORMATION
+========================================= */
+
+.movie-information {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 9px;
+
+    margin-bottom: 16px;
+}
+
+
+.movie-information div {
+
+    display: flex;
+
+    gap: 15px;
+
+    align-items: flex-start;
+}
+
+
+.movie-information strong {
+
+    min-width: 90px;
+
+    color: #4da4ff;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.4px;
+}
+
+
+.movie-information span {
+
+    color: #b7c4d6;
+
+    font-size: 12px;
 
     line-height: 1.5;
 }
 
 
 /* =========================================
-   USER COMMENT
+   REQUEST INFORMATION
 ========================================= */
+
+.user-comment {
+
+    margin-top: 8px;
+}
+
 
 .user-comment h4 {
 
-    margin: 0 0 4px;
+    margin: 0 0 7px;
 
-    color: #61799b;
+    color: #4da4ff;
 
-    font-size: 6px;
+    font-size: 10px;
 
     letter-spacing: 1px;
 }
@@ -583,17 +762,19 @@ mat-select{
 
 .user-comment p {
 
-    margin: 0;
-
-    max-width: 500px;
+    margin: 5px 0;
 
     color: #8fa0b8;
 
-    font-size: 7px;
-
-    font-style: italic;
+    font-size: 11px;
 
     line-height: 1.5;
+}
+
+
+.user-comment strong {
+
+    color: #d5e0ef;
 }
 
 
@@ -607,8 +788,9 @@ mat-select{
 
     bottom: 0;
 
-    left: 16px;
-    right: 16px;
+    left: 20px;
+
+    right: 20px;
 
     display: flex;
 
@@ -616,65 +798,75 @@ mat-select{
 
     justify-content: space-between;
 
-    padding: 10px 0;
+    padding: 13px 0;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    border-top:
+        1px solid rgba(255, 255, 255, 0.08);
 }
 
 
+/* =========================================
+   REQUEST REFERENCE
+========================================= */
+
 .request-reference {
 
-    color: #60718d;
+    color: #6d86a8;
 
-    font-size: 6px;
+    font-size: 10px;
 
     letter-spacing: 0.5px;
 }
 
 
+/* =========================================
+   ACTION BUTTONS
+========================================= */
+
 .action-buttons {
 
     display: flex;
 
-    gap: 7px;
+    gap: 10px;
 }
 
 
 /* =========================================
-   REJECT
+   REJECT BUTTON
 ========================================= */
 
 .reject-btn {
 
-    min-width: 48px !important;
+    min-width: 70px !important;
 
-    height: 27px !important;
+    height: 36px !important;
 
-    padding: 0 12px !important;
+    padding: 0 16px !important;
 
     color: #d8e0eb !important;
 
-    border-color: rgba(255, 255, 255, 0.15) !important;
+    border-color:
+        rgba(255, 255, 255, 0.18) !important;
 
-    font-size: 8px !important;
+    font-size: 11px !important;
 }
 
 
 /* =========================================
-   APPROVE
+   APPROVE BUTTON
 ========================================= */
 
 .approve-btn {
 
-    height: 27px !important;
+    height: 36px !important;
 
-    padding: 0 14px !important;
+    padding: 0 18px !important;
 
     background: #F4C542 !important;
 
     color: #081120 !important;
 
-    font-size: 8px !important;
+    font-size: 11px !important;
 
     font-weight: 700 !important;
 
@@ -689,4 +881,122 @@ mat-select{
 
     box-shadow:
         0 0 15px rgba(244, 197, 66, 0.4);
+}
+
+
+.approve-btn:disabled,
+.reject-btn:disabled {
+
+    opacity: 0.4;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   EMPTY DETAILS
+========================================= */
+
+.empty-details {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #71829d;
+
+    font-size: 13px;
+}
+
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.request-list::-webkit-scrollbar {
+
+    width: 6px;
+}
+
+
+.request-list::-webkit-scrollbar-track {
+
+    background: #071120;
+}
+
+
+.request-list::-webkit-scrollbar-thumb {
+
+    background: #263d5d;
+
+    border-radius: 10px;
+}
+
+
+.request-list::-webkit-scrollbar-thumb:hover {
+
+    background: #F4C542;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+
+    .request-section {
+
+        grid-template-columns: 30% minmax(0, 70%);
+
+    }
+
+    .request-details {
+
+        grid-template-columns: 150px minmax(0, 1fr);
+
+        column-gap: 18px;
+
+        padding: 18px;
+
+    }
+
+    .poster {
+
+        width: 145px;
+
+        height: 225px;
+
+    }
+
+    .details-content h2 {
+
+        font-size: 25px;
+
+    }
+
+}
+
+
+@media (max-width: 850px) {
+
+    .request-section {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .request-list {
+
+        height: 300px;
+
+    }
+
+    .request-details {
+
+        min-height: 500px;
+
+    }
+
 }

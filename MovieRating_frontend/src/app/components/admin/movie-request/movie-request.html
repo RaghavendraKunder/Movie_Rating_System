@@ -44,109 +44,222 @@
     </mat-card>
 
 </div>
-        <mat-form-field appearance="outline" class="search-box">
-        <mat-label id="searchBar">Search</mat-label>
-        <input matInput placeholder="e.g. The Dark Knight">
-        <mat-icon matSuffix>search</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline" class="filter-box">
-            <mat-label id="filterBar">Select</mat-label>
-            <mat-select multiple>
-                <mat-option value="one">First option</mat-option>
-                <mat-option value="two">Second option</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <!-- REQUEST CONTENT -->
+<mat-form-field appearance="outline" class="search-box">
+
+    <mat-label id="searchBar">
+        Search
+    </mat-label>
+
+    <input
+        matInput
+        placeholder="e.g. The Dark Knight"
+        [(ngModel)]="searchText"
+        (ngModelChange)="applyFilters()"
+    >
+
+    <mat-icon matSuffix>
+        search
+    </mat-icon>
+
+</mat-form-field>
+      <mat-form-field appearance="outline" class="filter-box">
+
+    <mat-label id="filterBar">
+        Select
+    </mat-label>
+
+    <mat-select
+        [(ngModel)]="selectedStatus"
+        (selectionChange)="applyFilters()"
+    >
+
+        <mat-option value="ALL">
+            All Requests
+        </mat-option>
+
+        <mat-option value="PENDING">
+            Pending
+        </mat-option>
+
+        <mat-option value="APPROVED">
+            Approved
+        </mat-option>
+
+        <mat-option value="REJECTED">
+            Rejected
+        </mat-option>
+
+    </mat-select>
+
+</mat-form-field>
+<!-- REQUEST CONTENT -->
 <div class="request-section">
 
     <!-- LEFT: REQUEST LIST -->
     <div class="request-list">
 
-        <div class="request-item active">
+        <div
+            *ngFor="let request of filteredRequests"
+            class="request-item"
+            [class.active]="selectedRequest?.id === request.id"
+            (click)="selectRequest(request)"
+        >
+
             <div class="request-title">
-                Decision to Leave
-                <span class="status pending">Hold</span>
+
+                <span>
+                    {{ request.title }}
+                </span>
+
+                <span
+                    class="status"
+                    [ngClass]="getStatusClass(request.status)"
+                >
+                    {{ request.status }}
+                </span>
+
             </div>
 
             <div class="request-user">
-                Requested by: Min-ho Park
+
+                Requested by:
+                {{ request.requestedBy }}
+
             </div>
 
             <div class="request-meta">
-                2022 • Park Chan-wook
+
+                {{ request.releaseDate | date:'yyyy' }}
+                •
+                {{ request.director }}
+
             </div>
+
         </div>
 
-        <div class="request-item">
 
-            <div class="request-title">
-                Beau Is Afraid
-            </div>
-
-            <div class="request-user">
-                Requested by: Alex Turner
-            </div>
-
-            <div class="request-meta">
-                2023 • Ari Aster
-            </div>
-
-        </div>
-
-        <div class="request-item">
-
-            <div class="request-title">
-                Stalker (Restored)
-            </div>
-
-            <div class="request-user">
-                Requested by: TarikovskiyFan92
-            </div>
-
-            <div class="request-meta">
-                1979 • Andrei Tarkovsky
-            </div>
-
+        <!-- NO REQUESTS -->
+        <div
+            class="no-requests"
+            *ngIf="filteredRequests.length === 0"
+        >
+            No requests found.
         </div>
 
     </div>
 
 
     <!-- RIGHT: REQUEST DETAILS -->
-    <div class="request-details">
+    <div
+        class="request-details"
+        *ngIf="selectedRequest"
+    >
 
+        <!-- POSTER -->
         <div class="poster">
-            <span>POSTER</span>
+
+            <img
+                *ngIf="selectedRequest.posterUrl"
+                [src]="selectedRequest.posterUrl"
+                [alt]="selectedRequest.title"
+            />
+
+            <span
+                *ngIf="!selectedRequest.posterUrl"
+            >
+                POSTER
+            </span>
+
         </div>
 
+
+        <!-- DETAILS -->
         <div class="details-content">
 
-            <h2>Decision to Leave</h2>
+            <h2>
+                {{ selectedRequest.title }}
+            </h2>
 
             <p class="director">
-                HEO JIL KYOLSIN
+                {{ selectedRequest.director }}
             </p>
 
+
+            <!-- TAGS -->
             <div class="movie-tags">
-                <span>4K UHD</span>
-                <span>KOREAN</span>
-                <span>138 MIN</span>
+
+                <span>
+                    {{ selectedRequest.language }}
+                </span>
+
+                <span>
+                    {{ selectedRequest.duration }} MIN
+                </span>
+
+                <span
+                    *ngFor="let genre of selectedRequest.genres"
+                >
+                    {{ genre }}
+                </span>
+
             </div>
 
+
+            <!-- DESCRIPTION -->
             <p class="description">
-                A detective investigating a man's death in the mountains
-                meets the dead man's mysterious wife in the course of his
-                dogged sleuthing.
+
+                {{ selectedRequest.description }}
+
             </p>
 
+
+            <!-- MOVIE INFORMATION -->
+            <div class="movie-information">
+
+                <div>
+                    <strong>Release Date</strong>
+                    <span>
+                        {{ selectedRequest.releaseDate | date:'dd MMM yyyy' }}
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Director</strong>
+                    <span>
+                        {{ selectedRequest.director }}
+                    </span>
+                </div>
+
+                <div>
+                    <strong>Cast</strong>
+                    <span>
+                        {{ selectedRequest.cast }}
+                    </span>
+                </div>
+
+            </div>
+
+
+            <!-- REQUEST INFORMATION -->
             <div class="user-comment">
 
-                <h4>USER COMMENT</h4>
+                <h4>REQUEST INFORMATION</h4>
 
                 <p>
-                    "The cinematography is unmatched. We need the 4K criteria
-                    restoration for the server archives. High priority for
-                    the cinephile group."
+                    Requested by:
+                    <strong>
+                        {{ selectedRequest.requestedBy }}
+                    </strong>
+                </p>
+
+                <p>
+                    Email:
+                    {{ selectedRequest.userEmail }}
+                </p>
+
+                <p>
+                    Requested on:
+                    {{ selectedRequest.requestedAt | date:'dd MMM yyyy, hh:mm a' }}
                 </p>
 
             </div>
@@ -158,17 +271,35 @@
         <div class="request-actions">
 
             <div class="request-reference">
-                REF: RQG-8821-X &nbsp;&nbsp; • &nbsp;&nbsp;
-                PRIORITY: HIGH
+
+                REQUEST #{{ selectedRequest.id }}
+
+                &nbsp;&nbsp; • &nbsp;&nbsp;
+
+                STATUS:
+                {{ selectedRequest.status }}
+
             </div>
+
 
             <div class="action-buttons">
 
-                <button mat-stroked-button class="reject-btn">
+                <button
+                    mat-stroked-button
+                    class="reject-btn"
+                    [disabled]="selectedRequest.status !== 'PENDING'"
+                    (click)="rejectRequest()"
+                >
                     Reject
                 </button>
 
-                <button mat-raised-button class="approve-btn">
+
+                <button
+                    mat-raised-button
+                    class="approve-btn"
+                    [disabled]="selectedRequest.status !== 'PENDING'"
+                    (click)="approveRequest()"
+                >
                     Approve Request
                 </button>
 
@@ -178,8 +309,19 @@
 
     </div>
 
-</div>
-        
+
+    <!-- NO SELECTED REQUEST -->
+    <div
+        class="request-details empty-details"
+        *ngIf="!selectedRequest"
+    >
+
+        <p>
+            Select a movie request to view its details.
+        </p>
+
     </div>
 
+</div>
 
+    

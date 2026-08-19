@@ -73,11 +73,11 @@
                             {{ movie.averageRating || 0 | number:'1.1-1' }}
                         </span>
                         <span class="rating-max">
-                            /10
+                            /5
                         </span>
                     </div>
                     <div class="rating-track">
-                        <i [style.width.%]="(movie.averageRating || 0) * 10">
+                        <i [style.width.%]="(movie.averageRating || 0) * 20">
                         </i>
                     </div>
                     <p class="movie-votes">

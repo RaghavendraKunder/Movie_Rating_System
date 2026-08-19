@@ -1,11 +1,13 @@
 package com.movierating.movie_rating_backend.controller;
 
+import java.util.List;
+
+import com.movierating.movie_rating_backend.dto.MovieRequestAdminResponse;
 import com.movierating.movie_rating_backend.dto.MovieRequestCreate;
-import com.movierating.movie_rating_backend.entity.MovieRequestEntity;
-import com.movierating.movie_rating_backend.service.MovieRequestService;
 import com.movierating.movie_rating_backend.dto.MovieRequestResponse;
 import com.movierating.movie_rating_backend.entity.Genre;
-import java.util.stream.Collectors;
+import com.movierating.movie_rating_backend.entity.MovieRequestEntity;
+import com.movierating.movie_rating_backend.service.MovieRequestService;
 
 import jakarta.validation.Valid;
 
@@ -26,6 +28,11 @@ import org.springframework.web.bind.annotation.*;
 public class MovieRequestController {
 
     private final MovieRequestService movieRequestService;
+
+
+    // =========================================================
+    // USER - CREATE REQUEST
+    // =========================================================
 
     @PostMapping
     public ResponseEntity<MovieRequestResponse> createRequest(
@@ -64,6 +71,61 @@ public class MovieRequestController {
         return new ResponseEntity<>(
                 response,
                 HttpStatus.CREATED
+        );
+    }
+
+
+    // =========================================================
+    // ADMIN - GET ALL REQUESTS
+    // =========================================================
+
+    @GetMapping
+    public ResponseEntity<List<MovieRequestAdminResponse>> getAllRequests() {
+
+        return ResponseEntity.ok(
+                movieRequestService.getAllRequests()
+        );
+    }
+
+
+    // =========================================================
+    // ADMIN - GET SINGLE REQUEST
+    // =========================================================
+
+    @GetMapping("/{id}")
+    public ResponseEntity<MovieRequestAdminResponse> getRequestById(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                movieRequestService.getRequestById(id)
+        );
+    }
+
+
+    // =========================================================
+    // ADMIN - APPROVE
+    // =========================================================
+
+    @PutMapping("/{id}/approve")
+    public ResponseEntity<MovieRequestAdminResponse> approveRequest(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                movieRequestService.approveRequest(id)
+        );
+    }
+
+
+    // =========================================================
+    // ADMIN - REJECT
+    // =========================================================
+
+    @PutMapping("/{id}/reject")
+    public ResponseEntity<MovieRequestAdminResponse> rejectRequest(
+            @PathVariable Long id) {
+
+        return ResponseEntity.ok(
+                movieRequestService.rejectRequest(id)
         );
     }
 }
