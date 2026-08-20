@@ -1,5 +1,7 @@
 package com.movierating.movie_rating_backend.config;
 
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +22,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity
 @RequiredArgsConstructor
 public class SecurityConfig {
 
@@ -101,20 +104,32 @@ public class SecurityConfig {
                 	 // MOVIE REQUEST APIs
                 	 // =========================================================
 
-                	    .requestMatchers(
-                	            org.springframework.http.HttpMethod.POST,
-                	            "/api/movie-requests"
-                	    )
-                	    .hasAnyRole("USER", "ADMIN")
+                	 // USER or ADMIN can create a movie request
+                	 .requestMatchers(
+                	         org.springframework.http.HttpMethod.POST,
+                	         "/api/movie-requests"
+                	 )
+                	 .hasAnyRole("USER", "ADMIN")
 
-                	    // ADMIN can approve/reject
-                	    .requestMatchers(
-                	            org.springframework.http.HttpMethod.PUT,
-                	            "/api/movie-requests/**"
-                	    )
-                	    .hasRole("ADMIN")
+                	 // Only ADMIN can view movie requests
+                	 .requestMatchers(
+                	         org.springframework.http.HttpMethod.GET,
+                	         "/api/movie-requests/**"
+                	 )
+                	 .hasRole("ADMIN")
 
+                	 // Only ADMIN can approve/reject movie requests
+                	 .requestMatchers(
+                	         org.springframework.http.HttpMethod.PUT,
+                	         "/api/movie-requests/*/approve"
+                	 )
+                	 .hasRole("ADMIN")
 
+                	 .requestMatchers(
+                	         org.springframework.http.HttpMethod.PUT,
+                	         "/api/movie-requests/*/reject"
+                	 )
+                	 .hasRole("ADMIN")
                 	    .anyRequest().authenticated()
                 	)
                 .authenticationProvider(authenticationProvider())
