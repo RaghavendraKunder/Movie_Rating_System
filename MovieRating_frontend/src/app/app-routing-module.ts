@@ -16,6 +16,7 @@ import {MovieRequest} from './components/admin/movie-request/movie-request';
 import { MovieDetails } from './components/admin/movie-details/movie-details';
 import { AddRequest } from './components/user/add-request/add-request';
 import { UserMovieDetails } from './components/user/user-movie-details/user-movie-details';
+import { TotalRaters } from './components/admin/total-raters/total-raters';
 
 
 
@@ -37,7 +38,8 @@ const routes: Routes = [
   { path: 'user-my-ratings', component: UserMyRatings},
   { path: 'movie-request', component: MovieRequest},
   { path: 'movie-details/:id', component: MovieDetails},
-  { path: 'user-movie-details/:id', component:UserMovieDetails}
+  { path: 'user-movie-details/:id', component:UserMovieDetails},
+  { path: 'total-raters', component: TotalRaters}
 ];
 
 @NgModule({

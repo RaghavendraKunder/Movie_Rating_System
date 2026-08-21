@@ -1,9 +1,11 @@
 <app-navbar></app-navbar>
 <div class="allMovies-container">
+  
     <!-- Side Navigation -->
    <div class="sidebar">
         <app-side-nav></app-side-nav>
     </div>
+  
     <!-- Main Content -->
     <div class="main-content">
         <h2 class="title">
@@ -11,133 +13,111 @@
         </h2>
         <h5 class="desc">Review user-submitted movie requests</h5>
         <div class="cards">
-    <mat-card class="card display">
-        <mat-icon>local_movies</mat-icon>
-        <div class="stat-info">
-            <h2>120</h2>
-            <p>Total Movies</p>
-        </div>
-    </mat-card>
+            <mat-card class="card display">
+                <mat-icon>format_list_bulleted</mat-icon>
+                <div class="stat-info">
+                    <h2>{{ totalRequests }}</h2>
+                    <p>Total Requests</p>
+                </div>
+            </mat-card>
+  
+            <mat-card class="card display">
+                <mat-icon>schedule</mat-icon>
+                <div class="stat-info">
+                    <h2>{{ pendingRequests }}</h2>
+                    <p>Pending Requests</p>
+                </div>
+            </mat-card>
+            
+            <mat-card class="card display">
+                <mat-icon>verified</mat-icon>
+                <div class="stat-info">
+                    <h2>{{ approvedRequests }}</h2>
+                    <p>Approved Requests</p>
+                </div>
+            </mat-card>
+        
+            <mat-card class="card display">
+                <mat-icon>block</mat-icon>
+                <div class="stat-info">
+                    <h2>{{ rejectedRequests }}</h2>
+                    <p>Rejected Requests</p>
+                </div>
+            </mat-card>
+    </div>
 
-    <mat-card class="card display">
-        <mat-icon>star_rate</mat-icon>
-        <div class="stat-info">
-            <h2>20</h2>
-            <p>Favourites</p>
-        </div>
-    </mat-card>
-
-    <mat-card class="card display">
-        <mat-icon>rate_review</mat-icon>
-        <div class="stat-info">
-            <h2>15</h2>
-            <p>You've Rated</p>
-        </div>
-    </mat-card>
-
-    <mat-card class="card display">
-        <mat-icon>add_circle_outline</mat-icon>
-        <div class="stat-info">
-            <h2>15</h2>
-            <p>You've Added</p>
-        </div>
-    </mat-card>
-
-</div>
-<mat-form-field appearance="outline" class="search-box">
-
-    <mat-label id="searchBar">
-        Search
-    </mat-label>
-
-    <input
-        matInput
-        placeholder="e.g. The Dark Knight"
-        [(ngModel)]="searchText"
-        (ngModelChange)="applyFilters()"
-    >
-
-    <mat-icon matSuffix>
-        search
-    </mat-icon>
-
-</mat-form-field>
-      <mat-form-field appearance="outline" class="filter-box">
-
-    <mat-label id="filterBar">
-        Select
-    </mat-label>
-
-    <mat-select
-        [(ngModel)]="selectedStatus"
-        (selectionChange)="applyFilters()"
-    >
-
-        <mat-option value="ALL">
-            All Requests
-        </mat-option>
-
-        <mat-option value="PENDING">
-            Pending
-        </mat-option>
-
-        <mat-option value="APPROVED">
-            Approved
-        </mat-option>
-
-        <mat-option value="REJECTED">
-            Rejected
-        </mat-option>
-
-    </mat-select>
-
-</mat-form-field>
-<!-- REQUEST CONTENT -->
-<div class="request-section">
-
-    <!-- LEFT: REQUEST LIST -->
-    <div class="request-list">
-
-        <div
-            *ngFor="let request of filteredRequests"
-            class="request-item"
-            [class.active]="selectedRequest?.id === request.id"
-            (click)="selectRequest(request)"
+    <mat-form-field appearance="outline" class="search-box">
+        <mat-label id="searchBar">
+            Search
+        </mat-label>
+        <input
+            matInput
+            placeholder="e.g. The Dark Knight"
+            [(ngModel)]="searchText"
+            (ngModelChange)="applyFilters()"
         >
+        <mat-icon matSuffix>
+            search
+        </mat-icon>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="filter-box">
+        <mat-label id="filterBar">
+            Select
+        </mat-label>
+        <mat-select
+            [(ngModel)]="selectedStatus"
+            (selectionChange)="applyFilters()"
+        >
+            <mat-option value="ALL">
+                All Requests
+            </mat-option>
+            <mat-option value="PENDING">
+                Pending
+            </mat-option>
+            <mat-option value="APPROVED">
+                Approved
+            </mat-option>
+            <mat-option value="REJECTED">
+                Rejected
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
-            <div class="request-title">
-
-                <span>
-                    {{ request.title }}
-                </span>
-
-                <span
-                    class="status"
-                    [ngClass]="getStatusClass(request.status)"
-                >
-                    {{ request.status }}
-                </span>
-
+    <!-- REQUEST CONTENT -->
+    <div class="request-section">
+        <!-- LEFT: REQUEST LIST -->
+        <div class="request-list">
+            <div
+                *ngFor="let request of filteredRequests"
+                class="request-item"    
+                [class.active]="selectedRequest?.id === request.id"
+                (click)="selectRequest(request)"
+            >
+                <div class="request-title">
+                    <span>
+                        {{ request.title }}
+                    </span>
+                    <span
+                        class="status"
+                        [ngClass]="getStatusClass(request.status)"
+                    >
+                        {{ request.status }}
+                    </span>
             </div>
-
+            
             <div class="request-user">
-
                 Requested by:
                 {{ request.requestedBy }}
-
             </div>
-
+            
             <div class="request-meta">
-
                 {{ request.releaseDate | date:'yyyy' }}
                 •
                 {{ request.director }}
-
             </div>
-
         </div>
-
-
+    
         <!-- NO REQUESTS -->
         <div
             class="no-requests"
@@ -145,145 +125,94 @@
         >
             No requests found.
         </div>
-
     </div>
-
-
+    
     <!-- RIGHT: REQUEST DETAILS -->
     <div
         class="request-details"
         *ngIf="selectedRequest"
     >
-
-        <!-- POSTER -->
         <div class="poster">
-
             <img
                 *ngIf="selectedRequest.posterUrl"
                 [src]="selectedRequest.posterUrl"
                 [alt]="selectedRequest.title"
             />
-
             <span
                 *ngIf="!selectedRequest.posterUrl"
             >
                 POSTER
             </span>
-
         </div>
-
-
-        <!-- DETAILS -->
         <div class="details-content">
-
             <h2>
                 {{ selectedRequest.title }}
             </h2>
-
             <p class="director">
                 {{ selectedRequest.director }}
             </p>
-
-
-            <!-- TAGS -->
             <div class="movie-tags">
-
                 <span>
                     {{ selectedRequest.language }}
                 </span>
-
                 <span>
                     {{ selectedRequest.duration }} MIN
                 </span>
-
                 <span
                     *ngFor="let genre of selectedRequest.genres"
                 >
                     {{ genre }}
                 </span>
-
             </div>
-
-
-            <!-- DESCRIPTION -->
             <p class="description">
-
                 {{ selectedRequest.description }}
-
             </p>
-
-
-            <!-- MOVIE INFORMATION -->
             <div class="movie-information">
-
                 <div>
                     <strong>Release Date</strong>
                     <span>
                         {{ selectedRequest.releaseDate | date:'dd MMM yyyy' }}
                     </span>
                 </div>
-
                 <div>
                     <strong>Director</strong>
                     <span>
                         {{ selectedRequest.director }}
                     </span>
                 </div>
-
                 <div>
                     <strong>Cast</strong>
                     <span>
                         {{ selectedRequest.cast }}
                     </span>
                 </div>
-
             </div>
-
-
-            <!-- REQUEST INFORMATION -->
             <div class="user-comment">
-
                 <h4>REQUEST INFORMATION</h4>
-
                 <p>
                     Requested by:
                     <strong>
                         {{ selectedRequest.requestedBy }}
                     </strong>
                 </p>
-
                 <p>
                     Email:
                     {{ selectedRequest.userEmail }}
                 </p>
-
                 <p>
                     Requested on:
                     {{ selectedRequest.requestedAt | date:'dd MMM yyyy, hh:mm a' }}
                 </p>
-
             </div>
-
         </div>
-
-
-        <!-- ACTION AREA -->
         <div class="request-actions">
-
             <div class="request-reference">
-
                 REQUEST #{{ selectedRequest.id }}
-
                 &nbsp;&nbsp; • &nbsp;&nbsp;
-
                 STATUS:
                 {{ selectedRequest.status }}
-
             </div>
-
-
             <div class="action-buttons">
-
                 <button
                     mat-stroked-button
                     class="reject-btn"
@@ -302,26 +231,19 @@
                 >
                     Approve Request
                 </button>
-
             </div>
-
         </div>
-
     </div>
-
 
     <!-- NO SELECTED REQUEST -->
     <div
         class="request-details empty-details"
         *ngIf="!selectedRequest"
     >
-
         <p>
             Select a movie request to view its details.
         </p>
-
     </div>
-
 </div>
 
     

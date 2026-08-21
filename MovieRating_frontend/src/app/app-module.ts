@@ -41,6 +41,7 @@ import { jwtInterceptor } from './interceptors/jwt-interceptor';
 import { UserMovieDetails } from './components/user/user-movie-details/user-movie-details';
 import { MovieDetails } from './components/admin/movie-details/movie-details';
 import { AddRequest } from './components/user/add-request/add-request';
+import { TotalRaters } from './components/admin/total-raters/total-raters';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import { AddRequest } from './components/user/add-request/add-request';
     UserMovieDetails,
     MovieDetails,
     AddRequest,
+    TotalRaters,
   ],
   imports: [
     BrowserModule,

@@ -23,6 +23,12 @@ export class MovieRequest implements OnInit {
   searchText: string = '';
   selectedStatus: string = 'ALL';
   loading: boolean = false;
+  movieRequests: any[] = [];
+
+  totalRequests = 0;
+  pendingRequests = 0;
+  approvedRequests = 0;
+  rejectedRequests = 0;
 
   constructor(
     private movieRequestService: MovieRequestService,
@@ -55,6 +61,7 @@ export class MovieRequest implements OnInit {
           } else {
             this.selectedRequest = null;
           }
+          this.updateRequestStats();
           this.applyFilters();
           this.loading = false;
         },
@@ -172,6 +179,23 @@ export class MovieRequest implements OnInit {
       default: return 'pending';
     }
   }
+
+ updateRequestStats(): void {
+
+  this.totalRequests = this.requests.length;
+
+  this.pendingRequests = this.requests.filter(request => request.status === 'PENDING').length;
+  this.approvedRequests = this.requests.filter(request => request.status === 'APPROVED').length;
+  this.rejectedRequests = this.requests.filter(request => request.status === 'REJECTED').length;
+
+  console.log('Request Stats:', {
+    total: this.totalRequests,
+    pending: this.pendingRequests,
+    approved: this.approvedRequests,
+    rejected: this.rejectedRequests
+  });
+
+}
 
   // FORMAT DATE
   formatDate(date: string): string {

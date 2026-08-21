@@ -1,0 +1,465 @@
+<app-navbar></app-navbar>
+
+<div class="allMovies-container">
+
+    <!-- Side Navigation -->
+    <div class="sidebar">
+        <app-side-nav></app-side-nav>
+    </div>
+
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <h2 class="title">
+            Total Raters
+        </h2>
+
+        <h5 class="desc">
+            Comprehensive Audience Engagement Analytics
+        </h5>
+
+
+        <!-- =========================
+             STAT CARDS
+        ========================== -->
+
+        <div class="cards">
+
+            <mat-card class="card display">
+
+                <mat-icon>
+                    format_list_bulleted
+                </mat-icon>
+
+                <div class="stat-info">
+
+                    <h2>
+                        {{ totalUsers }}
+                    </h2>
+
+                    <p>
+                        Active Raters
+                    </p>
+
+                </div>
+
+            </mat-card>
+
+
+            <mat-card class="card display">
+
+                <mat-icon>
+                    star_rate
+                </mat-icon>
+
+                <div class="stat-info">
+
+                    <h2>
+                        {{ totalRatings }}
+                    </h2>
+
+                    <p>
+                        Total Ratings Submitted
+                    </p>
+
+                </div>
+
+            </mat-card>
+
+        </div>
+
+
+        <!-- =========================
+             SEARCH AND FILTER
+        ========================== -->
+
+        <div class="filter-container">
+
+            <mat-form-field
+                appearance="outline"
+                class="search-box"
+            >
+
+                <mat-label id="searchBar">
+                    Search
+                </mat-label>
+
+                <input
+                    matInput
+                    placeholder="Search user..."
+                    [(ngModel)]="searchTerm"
+                    (input)="onSearch()"
+                >
+
+                <mat-icon matSuffix>
+                    search
+                </mat-icon>
+
+            </mat-form-field>
+
+
+            <mat-form-field
+                appearance="outline"
+                class="filter-box"
+            >
+
+                <mat-label id="filterBar">
+                    Sort
+                </mat-label>
+
+                <mat-select
+                    [(ngModel)]="sortOrder"
+                    (selectionChange)="onSortChange()"
+                >
+
+                    <mat-option value="NEWEST">
+                        Newest
+                    </mat-option>
+
+                    <mat-option value="OLDEST">
+                        Oldest
+                    </mat-option>
+
+                </mat-select>
+
+            </mat-form-field>
+
+        </div>
+
+
+        <!-- =========================
+             USERS SECTION
+        ========================== -->
+
+        <div class="users-layout">
+
+
+            <!-- USER LIST -->
+
+            <div class="users-panel">
+
+                <div
+                    class="user-list"
+                    *ngIf="!loading"
+                >
+
+                    <div
+                        class="user-item"
+                        *ngFor="let user of filteredUsers"
+                        [class.selected]="selectedUser?.id === user.id"
+                        (click)="selectUser(user)"
+                    >
+
+
+                        <!-- Profile Image -->
+
+                        <div class="avatar">
+
+                            <img
+                                *ngIf="getProfileImage(user)"
+                                [src]="getProfileImage(user)"
+                                [alt]="user.fullName"
+                            >
+
+                            <span
+                                *ngIf="!getProfileImage(user)"
+                            >
+                                {{ getInitials(user) }}
+                            </span>
+
+                        </div>
+
+
+                        <!-- User Information -->
+
+                        <div class="user-info">
+
+                            <div class="user-name-row">
+
+                                <h4>
+                                    {{ user.fullName }}
+                                </h4>
+
+
+                                <!-- ADMIN CAPSULE -->
+
+                                <span
+                                    *ngIf="user.role === 'ADMIN'"
+                                    class="admin-badge"
+                                >
+                                    ADMIN
+                                </span>
+
+                            </div>
+
+
+                            <p class="user-email">
+
+                                {{ user.email }}
+
+                            </p>
+
+
+                            <span class="rating-count">
+
+                                {{ user.totalRatings || 0 }}
+                                Ratings
+
+                            </span>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- Loading -->
+
+                <div
+                    *ngIf="loading"
+                    class="empty-state"
+                >
+
+                    Loading users...
+
+                </div>
+
+
+                <!-- No Users -->
+
+                <div
+                    *ngIf="!loading && filteredUsers.length === 0"
+                    class="empty-state"
+                >
+
+                    No users found.
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 SELECTED USER DETAILS
+            ========================== -->
+
+            <div
+                class="user-details"
+                *ngIf="selectedUser"
+            >
+
+                <div class="details-header">
+
+
+                    <div class="details-avatar">
+
+                        <img
+                            *ngIf="getProfileImage(selectedUser)"
+                            [src]="getProfileImage(selectedUser)"
+                            [alt]="selectedUser.fullName"
+                        >
+
+                        <span
+                            *ngIf="!getProfileImage(selectedUser)"
+                        >
+                            {{ getInitials(selectedUser) }}
+                        </span>
+
+                    </div>
+
+
+                    <div class="details-title">
+
+                        <div class="name-role">
+
+                            <h2>
+                                {{ selectedUser.fullName }}
+                            </h2>
+
+
+                            <span
+                                *ngIf="selectedUser.role === 'ADMIN'"
+                                class="admin-badge"
+                            >
+                                ADMIN
+                            </span>
+
+                        </div>
+
+
+                        <p class="details-email">
+
+                            {{ selectedUser.email }}
+
+                        </p>
+
+
+                        <p class="joined-date">
+
+                            Member since
+                            {{ selectedUser.joinedAt | date:'dd MMM yyyy' }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- USER STATISTICS -->
+
+                <div class="user-stats">
+
+
+                    <div class="user-stat">
+
+                        <mat-icon>
+                            star_rate
+                        </mat-icon>
+
+                        <div>
+
+                            <h3>
+                                {{ selectedUser.totalRatings || 0 }}
+                            </h3>
+
+                            <p>
+                                Ratings
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="user-stat">
+
+                        <mat-icon>
+                            rate_review
+                        </mat-icon>
+
+                        <div>
+
+                            <h3>
+                                {{ selectedUser.totalReviews || 0 }}
+                            </h3>
+
+                            <p>
+                                Reviews
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="user-stat">
+
+                        <mat-icon>
+                            bookmark
+                        </mat-icon>
+
+                        <div>
+
+                            <h3>
+                                {{ selectedUser.watchlistCount || 0 }}
+                            </h3>
+
+                            <p>
+                                Watchlist
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ACCOUNT INFORMATION -->
+
+                <div class="account-info">
+
+                    <h3>
+                        Account Information
+                    </h3>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            Role
+                        </span>
+
+                        <strong>
+                            {{ selectedUser.role }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            Account Status
+                        </span>
+
+                        <strong
+                            [class.active]="selectedUser.enabled"
+                            [class.inactive]="!selectedUser.enabled"
+                        >
+
+                            {{
+                                selectedUser.enabled
+                                ? 'Active'
+                                : 'Disabled'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-row">
+
+                        <span>
+                            Phone
+                        </span>
+
+                        <strong>
+
+                            {{
+                                selectedUser.phone ||
+                                'Not provided'
+                            }}
+
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- NO SELECTED USER -->
+
+            <div
+                class="user-details empty-details"
+                *ngIf="!selectedUser && !loading"
+            >
+
+                Select a user to view details.
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
