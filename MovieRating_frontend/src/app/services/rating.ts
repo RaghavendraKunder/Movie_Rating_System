@@ -56,4 +56,23 @@ export class RatingService {
 
   }
 
+  getUserRatings(): Observable<RatingResponse[]> {
+    return this.http.get<RatingResponse[]>(
+      `${this.baseUrl}/user`,
+      {
+        withCredentials: true
+      }
+    );
+  }
+
+  deleteRating(movieId: number): Observable<string> {
+    return this.http.delete(
+      `${this.baseUrl}/${movieId}`,
+      {
+        responseType: 'text',
+        withCredentials: true
+      }
+    );
+  }
+
 }

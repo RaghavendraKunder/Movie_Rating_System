@@ -1,6 +1,7 @@
 package com.movierating.movie_rating_backend.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,6 +19,12 @@ public class RatingResponse {
     private Long movieId;
 
     private String movieTitle;
+
+    private String posterUrl;
+
+    private Integer releaseYear;
+
+    private List<String> genres;
 
     private Long userId;
 

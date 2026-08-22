@@ -12,6 +12,7 @@ import com.movierating.movie_rating_backend.dto.RatingResponse;
 import com.movierating.movie_rating_backend.entity.Movie;
 import com.movierating.movie_rating_backend.entity.Rating;
 import com.movierating.movie_rating_backend.entity.User;
+import com.movierating.movie_rating_backend.entity.Genre;
 import com.movierating.movie_rating_backend.exception.MovieNotFoundException;
 import com.movierating.movie_rating_backend.exception.RatingNotFoundException;
 import com.movierating.movie_rating_backend.exception.UserNotFoundException;
@@ -203,23 +204,34 @@ public class RatingServiceImpl implements RatingService {
         movieRepository.save(movie);
 
     }
-    /**
-     * Convert Rating Entity to RatingResponse DTO.
-     */
+    
+    /* Convert Rating Entity to RatingResponse DTO.*/
     private RatingResponse mapToResponse(Rating rating) {
+        Movie movie = rating.getMovie();
+        Integer releaseYear = null;
+        if (movie.getReleaseDate() != null) {
+            releaseYear = movie.getReleaseDate()
+                            .getYear();
+        }
+        List<String> genres = movie.getGenres()
+                        .stream()
+                        .map(Genre::getName)
+                        .collect(Collectors.toList());
 
         return RatingResponse.builder()
                 .ratingId(rating.getId())
-                .movieId(rating.getMovie().getId())
-                .movieTitle(rating.getMovie().getTitle())
+                .movieId(movie.getId())
+                .movieTitle(movie.getTitle())
+                .posterUrl(movie.getPosterUrl())
+                .releaseYear(releaseYear)
+                .genres(genres)
                 .userId(rating.getUser().getId())
                 .userName(rating.getUser().getFullName())
                 .rating(rating.getRating())
-                .averageRating(rating.getMovie().getAverageRating())
-                .totalRatings(rating.getMovie().getTotalRatings())
+                .averageRating(movie.getAverageRating())
+                .totalRatings(movie.getTotalRatings())
                 .ratedAt(rating.getCreatedAt())
+
                 .build();
-
     }
-
 }

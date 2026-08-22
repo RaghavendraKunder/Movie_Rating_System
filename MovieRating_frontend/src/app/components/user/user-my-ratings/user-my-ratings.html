@@ -1,1 +1,589 @@
-<p>user-my-ratings works!</p>
+<app-navbar></app-navbar>
+
+
+<div class="ratings-container">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <div class="sidebar">
+
+        <app-use-side-nav>
+        </app-use-side-nav>
+
+    </div>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <div class="main-content">
+
+
+        <!-- =========================
+             PAGE HEADER
+        ========================== -->
+
+        <div class="page-header">
+
+
+            <div>
+
+                <h1 class="title">
+
+                    My Ratings
+
+                </h1>
+
+
+                <p class="desc">
+
+                    Every movie you've rated.
+
+                </p>
+
+            </div>
+
+
+
+            <!-- SEARCH -->
+
+            <mat-form-field
+                appearance="outline"
+                class="search-box">
+
+
+                <mat-label>
+
+                    Search your history...
+
+                </mat-label>
+
+
+                <input
+                    matInput
+                    [(ngModel)]="searchTerm"
+                    (input)="filterRatings()">
+
+
+                <mat-icon
+                    matPrefix>
+
+                    search
+
+                </mat-icon>
+
+
+            </mat-form-field>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             LOADING
+        ========================== -->
+
+        <div
+            class="loading-state"
+
+            *ngIf="loading">
+
+
+            <mat-icon>
+
+                hourglass_top
+
+            </mat-icon>
+
+
+            <p>
+
+                Loading your ratings...
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             RATINGS TABLE
+        ========================== -->
+
+        <div
+            class="ratings-table"
+
+            *ngIf="
+                !loading &&
+                filteredRatings.length > 0
+            ">
+
+
+            <!-- TABLE HEADER -->
+
+            <div
+                class="table-header">
+
+
+                <div
+                    class="header-title">
+
+                    TITLE
+
+                </div>
+
+
+                <div
+                    class="header-rating">
+
+                    RATING
+
+                </div>
+
+
+                <div
+                    class="header-average">
+
+                    AVERAGE
+
+                </div>
+
+
+                <div
+                    class="header-date">
+
+                    DATE ADDED
+
+                </div>
+
+
+                <div
+                    class="header-tier">
+
+                    TIER
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 RATING ROW
+            ========================== -->
+
+            <div
+                class="rating-row"
+
+                *ngFor="
+                    let rating
+                    of paginatedRatings
+                "
+
+                (click)="
+                    openMovie(
+                        rating.movieId
+                    )
+                ">
+
+
+                <!-- MOVIE INFO -->
+
+                <div
+                    class="movie-column">
+
+
+                    <!-- Poster -->
+
+                    <img
+                        class="movie-poster"
+
+                        [src]="rating.posterUrl"
+
+                        [alt]="rating.movieTitle"
+
+
+                        onerror="
+                            this.src =
+                            'assets/images/poster-placeholder.png'
+                        ">
+
+
+                    <!-- Movie Details -->
+
+                    <div
+                        class="movie-details">
+
+
+                        <h3>
+
+                            {{
+                                rating.movieTitle
+                            }}
+
+                        </h3>
+
+
+                        <p>
+
+
+                            <span
+                                *ngIf="
+                                    rating.releaseYear
+                                ">
+
+                                {{
+                                    rating.releaseYear
+                                }}
+
+                            </span>
+
+
+                            <span
+                                *ngIf="
+                                    rating.genres &&
+                                    rating.genres.length
+                                ">
+
+                                <span
+                                    *ngIf="
+                                        rating.releaseYear
+                                    ">
+
+                                    ·
+
+                                </span>
+
+
+                                {{
+                                    rating.genres.join(
+                                        ' · '
+                                    )
+                                }}
+
+                            </span>
+
+
+                        </p>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- USER RATING -->
+
+                <div
+                    class="user-rating-column">
+
+
+                    <mat-icon>
+
+                        star
+
+                    </mat-icon>
+
+
+                    <span>
+
+                        {{
+                            rating.rating
+                            |
+                            number:'1.1-1'
+                        }}
+
+                    </span>
+
+
+                    <small>
+
+                        /10
+
+                    </small>
+
+
+                </div>
+
+
+
+                <!-- AVERAGE RATING -->
+
+                <div
+                    class="average-column">
+
+
+                    {{
+                        rating.averageRating
+                        |
+                        number:'1.1-1'
+                    }}
+
+
+                </div>
+
+
+
+                <!-- DATE -->
+
+                <div
+                    class="date-column">
+
+
+                    {{
+                        formatDate(
+                            rating.ratedAt
+                        )
+                    }}
+
+
+                </div>
+
+
+
+                <!-- TIER -->
+
+                <div
+                    class="tier-column">
+
+
+                    <span
+                        class="tier-badge"
+
+                        [ngClass]="
+                            getTierClass(
+                                rating.rating
+                            )
+                        ">
+
+
+                        {{
+                            getRatingTier(
+                                rating.rating
+                            )
+                        }}
+
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 PAGINATION
+            ========================== -->
+
+            <div
+                class="pagination">
+
+
+                <button
+                    mat-icon-button
+
+                    (click)="previousPage()"
+
+                    [disabled]="
+                        currentPage === 1
+                    ">
+
+
+                    <mat-icon>
+
+                        chevron_left
+
+                    </mat-icon>
+
+
+                </button>
+
+
+
+                <button
+                    mat-button
+
+                    *ngFor="
+                        let page
+                        of getPages()
+                    "
+
+                    class="page-button"
+
+                    [class.active]="
+                        page === currentPage
+                    "
+
+                    (click)="
+                        goToPage(
+                            page
+                        )
+                    ">
+
+
+                    {{ page }}
+
+
+                </button>
+
+
+
+                <button
+                    mat-icon-button
+
+                    (click)="nextPage()"
+
+                    [disabled]="
+                        currentPage === totalPages
+                    ">
+
+
+                    <mat-icon>
+
+                        chevron_right
+
+                    </mat-icon>
+
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             EMPTY RATINGS
+        ========================== -->
+
+        <div
+            class="empty-state"
+
+            *ngIf="
+                !loading &&
+                ratings.length === 0
+            ">
+
+
+            <div
+                class="empty-icon">
+
+
+                <mat-icon>
+
+                    star_border
+
+                </mat-icon>
+
+
+            </div>
+
+
+            <h2>
+
+                No ratings yet
+
+            </h2>
+
+
+            <p>
+
+                Start rating movies and
+                they will appear here.
+
+            </p>
+
+
+            <button
+                mat-raised-button
+
+                class="browse-button"
+
+                routerLink="
+                    /user-all-movies
+                ">
+
+
+                <mat-icon>
+
+                    movie
+
+                </mat-icon>
+
+
+                Browse Movies
+
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- =========================
+             NO SEARCH RESULTS
+        ========================== -->
+
+        <div
+            class="empty-state"
+
+            *ngIf="
+                !loading &&
+                ratings.length > 0 &&
+                filteredRatings.length === 0
+            ">
+
+
+            <div
+                class="empty-icon">
+
+
+                <mat-icon>
+
+                    search_off
+
+                </mat-icon>
+
+
+            </div>
+
+
+            <h2>
+
+                No ratings found
+
+            </h2>
+
+
+            <p>
+
+                Try searching for another movie
+                or genre.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
