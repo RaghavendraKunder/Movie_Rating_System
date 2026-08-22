@@ -30,7 +30,7 @@
                     Genre
                 </mat-label>
                 <mat-select
-                    [(ngModel)]="selectedGenres" (selectionChange)="filterMovies()">
+                    [(ngModel)]="selectedGenre" (selectionChange)="filterMovies()">
                     <mat-option value="">
                         All Genres
                     </mat-option>
@@ -46,6 +46,15 @@
             <mat-card class="movie-card"
                 *ngFor="let movie of filteredMovies; let i = index"
                 (click)="openMovie(movie.id!)">
+                    <button
+                        mat-icon-button
+                        class="bookmark-btn"
+                        [class.bookmarked]="isBookmarked(movie.id!)"
+                        (click)="toggleBookmark(movie.id!, $event)">
+                        <mat-icon>
+                            {{ isBookmarked(movie.id!) ? 'bookmark' : 'bookmark_border' }}
+                        </mat-icon>
+                    </button>
                 <span class="movie-rank">
                     {{ i + 1 }}
                 </span>

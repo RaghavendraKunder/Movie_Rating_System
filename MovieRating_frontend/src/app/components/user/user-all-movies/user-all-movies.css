@@ -152,6 +152,90 @@ mat-select {
 }
 
 /* =========================
+   BOOKMARK BUTTON
+========================= */
+
+.bookmark-btn {
+
+    position: absolute;
+
+    top: 18px;
+
+    right: 18px;
+
+    width: 42px;
+
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(13, 26, 51, 0.55);
+
+    backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    color: #f4c542;
+
+    z-index: 5;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        transform 0.2s ease,
+        box-shadow 0.25s ease;
+}
+
+
+/* Bookmark Icon */
+
+.bookmark-btn mat-icon {
+
+    font-size: 22px;
+
+    width: 22px;
+
+    height: 22px;
+
+}
+
+
+/* Hover */
+
+.bookmark-btn:hover {
+
+    transform: scale(1.08);
+
+    background: rgba(13, 26, 51, 0.8);
+
+    box-shadow:
+        0 0 8px rgba(244, 197, 66, 0.25);
+
+}
+
+
+/* When Movie Is Bookmarked */
+
+.bookmark-btn.bookmarked {
+
+    background: #081326;
+
+    color: white;
+
+    border-color: rgba(244, 197, 66, 0.45);
+
+    box-shadow:
+        0 0 8px rgba(0, 0, 0, 0.35);
+
+}
+
+/* =========================
    RANK
 ========================= */
 .movie-rank {

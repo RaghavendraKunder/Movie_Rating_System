@@ -1,5 +1,4 @@
 package com.movierating.movie_rating_backend.service.impl;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -152,28 +151,30 @@ public class WatchlistServiceImpl implements WatchlistService {
     /**
      * Convert Watchlist Entity to DTO
      */
+    /**
+     * Convert Watchlist Entity to DTO
+     */
     private WatchlistResponse mapToResponse(Watchlist watchlist) {
-
         Movie movie = watchlist.getMovie();
-
         Integer releaseYear = null;
-
         if (movie.getReleaseDate() != null) {
             releaseYear = movie.getReleaseDate().getYear();
         }
-
+        List<String> genres = movie.getGenres()
+                        		.stream()
+                        		.map(genre -> genre.getName())
+                        		.collect(Collectors.toList());
         return WatchlistResponse.builder()
                 .watchlistId(watchlist.getId())
                 .movieId(movie.getId())
                 .movieTitle(movie.getTitle())
                 .posterUrl(movie.getPosterUrl())
                 .language(movie.getLanguage())
+                .genres(genres)
                 .averageRating(movie.getAverageRating())
                 .duration(movie.getDuration())
                 .releaseYear(releaseYear)
                 .addedAt(watchlist.getAddedAt())
                 .build();
-
     }
-
 }

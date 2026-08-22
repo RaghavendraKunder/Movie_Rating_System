@@ -1,6 +1,7 @@
 package com.movierating.movie_rating_backend.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,8 @@ public class WatchlistResponse {
     private String posterUrl;
 
     private String language;
+
+    private List<String> genres;
 
     private String certificate;
 

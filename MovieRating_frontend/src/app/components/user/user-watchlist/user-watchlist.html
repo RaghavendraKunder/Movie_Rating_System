@@ -1,1 +1,193 @@
-<p>user-watchlist works!</p>
+<app-navbar></app-navbar>
+
+<div class="watchlist-container">
+    <!--SIDEBAR-->
+    <div class="sidebar">
+        <app-use-side-nav></app-use-side-nav>
+    </div>
+    <!--MAIN CONTENT-->
+    <div class="main-content">
+        <div class="page-heading">
+            <div>
+                <h1 class="title">
+                    Watchlist
+                </h1>
+                <p class="desc">
+                    Movies you saved to watch later.
+                </p>
+            </div>
+            <div
+                class="watchlist-count"
+                *ngIf="watchlistMovies.length > 0">
+                <mat-icon>
+                    bookmark
+                </mat-icon>
+                <span>
+                    {{ watchlistMovies.length }}
+                </span>
+            </div>
+        </div>
+        <!--SEARCH + FILTER-->
+        <div class="search-filter-row">
+            <!-- Search -->
+            <mat-form-field
+                appearance="outline"
+                class="search-box">
+                <mat-label>
+                    Search
+                </mat-label>
+                <input
+                    matInput
+                    placeholder="Search your watchlist..."
+                    [(ngModel)]="searchTerm"
+                    (input)="filterMovies()">
+                <mat-icon matSuffix>
+                    search
+                </mat-icon>
+            </mat-form-field>
+            <!-- Genre Filter -->
+            <mat-form-field
+                appearance="outline"
+                class="filter-box">
+                <mat-label>
+                    Genre
+                </mat-label>
+                <mat-select
+                    [(ngModel)]="selectedGenre"
+                    (selectionChange)="filterMovies()">
+                    <mat-option value="">
+                        All Genres
+                    </mat-option>
+                    <mat-option
+                        *ngFor="let genre of genres"
+                        [value]="genre">
+                        {{ genre }}
+                    </mat-option>
+                </mat-select>
+        </mat-form-field>
+    </div>
+    <!--LOADING-->
+    <div
+        class="loading-state"
+        *ngIf="loading">
+        <mat-icon>
+            hourglass_top
+        </mat-icon>
+        <p>
+            Loading your watchlist...
+        </p>
+    </div>
+    <!--MOVIES GRID-->
+    <div
+        class="movies-grid"
+        *ngIf="!loading &&
+               filteredMovies.length > 0">
+        <mat-card
+            class="movie-card"
+            *ngFor="let movie of filteredMovies"
+            (click)="openMovie(movie.movieId)">
+                <!-- Poster -->
+                <img
+                    class="movie-poster"
+                    [src]="movie.posterUrl"
+                    [alt]="movie.movieTitle"
+                    loading="lazy">
+                <!-- Gradient -->
+                <div
+                    class="poster-overlay">
+                </div>
+                <!-- Remove Bookmark -->
+                <button
+                    mat-icon-button
+                    class="bookmark-btn"
+                    (click)="removeFromWatchlist(movie, $event)"
+                    aria-label="Remove from watchlist">
+                    <mat-icon>
+                        bookmark
+                    </mat-icon>
+                </button>
+                <!-- Movie Information -->
+                <div class="movie-info">
+                    <div class="movie-added">
+                        SAVED
+                    </div>
+                    <h3 class="movie-title">
+                        {{ movie.movieTitle }}
+                    </h3>
+                    <p class="movie-meta">
+                        <span *ngIf="movie.releaseYear">
+                            {{ movie.releaseYear }}
+                        </span>
+                        <span *ngIf="movie.language">
+                            · {{ movie.language }}
+                        </span>
+                        <span *ngIf="movie.duration">
+                            ·
+                            {{formatDuration(movie.duration)}}
+                        </span>
+                    </p>
+                    <!-- Rating -->
+                    <div class="movie-rating">
+                        <mat-icon>
+                            star
+                        </mat-icon>
+                        <span
+                            class="rating-value">
+                            {{(movie.averageRating || 0)|number:'1.1-1' }}
+                        </span>
+                        <span class="rating-max">
+                            /5
+                        </span>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+        <!--EMPTY WATCHLIST-->
+        <div
+            class="empty-watchlist"
+            *ngIf="!loading && watchlistMovies.length === 0">
+            <div
+                class="empty-icon">
+                <mat-icon>
+                    bookmark_border
+                </mat-icon>
+            </div>
+            <h2>
+                Your watchlist is empty
+            </h2>
+            <p>
+                Save movies you want to watch later
+                and they will appear here.
+            </p>
+            <button
+                mat-raised-button
+                class="browse-btn"
+                routerLink="/user-all-movies">
+                <mat-icon>
+                    movie
+                </mat-icon>
+                Browse Movies
+            </button>
+        </div>
+        <!--NO SEARCH RESULTS-->
+        <div
+            class="empty-watchlist"
+            *ngIf="!loading &&
+                watchlistMovies.length > 0 &&
+                filteredMovies.length === 0">
+            <div
+                class="empty-icon">
+                <mat-icon>
+                    search_off
+                </mat-icon>
+            </div>
+            <h2>
+                No movies found
+            </h2>
+            <p>
+                Try changing your search
+                or language filter.
+            </p>
+        </div>
+    </div>
+</div>
